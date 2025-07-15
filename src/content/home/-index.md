@@ -1,7 +1,7 @@
 ---
-image: "@assets/astrogon-star.svg"
+image: "@assets/lupa.png"
+image2: "@assets/jane-doe.jpg"
 imageAlt: Astrogon logo
-title: Astrogon
 content: A rapidly-customizable template for a blog, documentation, and more.
 button:
   label: See the Code
