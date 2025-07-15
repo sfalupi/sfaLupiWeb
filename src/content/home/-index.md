@@ -1,6 +1,7 @@
 ---
+title: Hello
 image: "@assets/lupa.png"
-image2: "@assets/jane-doe.jpg"
+image2: "@assets/text.png"
 imageAlt: Astrogon logo
 content: A rapidly-customizable template for a blog, documentation, and more.
 button:
