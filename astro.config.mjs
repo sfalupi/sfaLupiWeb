@@ -8,6 +8,7 @@ import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import netlify from '@astrojs/netlify';
 import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
@@ -39,4 +40,6 @@ export default defineConfig({
     },
     extendDefaultPlugins: true
   },
+  output: 'server',
+  adapter: netlify(),
 });
