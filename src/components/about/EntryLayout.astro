@@ -10,11 +10,37 @@ interface Props {
 }
 
 const { entry } = Astro.props;
+
+// Add error handling for missing entry or entry data
+if (!entry) {
+  console.error('About entry is missing');
+  return Astro.redirect('/404');
+}
+
+if (!entry.data) {
+  console.error('About entry data is missing:', entry);
+  return Astro.redirect('/404');
+}
+
 const { title, description, image, imageAlt } = entry.data;
-const { Content } = await render(entry);
+
+// Safe rendering with error handling
+let Content;
+try {
+  const rendered = await render(entry);
+  Content = rendered.Content;
+} catch (error) {
+  console.error('Error rendering about entry:', error);
+  return Astro.redirect('/404');
+}
+
+// Provide fallback values
+const safeTitle = title || "About";
+const safeDescription = description || "";
+const safeImageAlt = imageAlt || "About image";
 ---
 
-<BaseLayout title={title} description={description} image={image?.src}>
+<BaseLayout title={safeTitle} description={safeDescription} image={image?.src}>
   <section class="section-sm">
     <div class="container">
       <div class="row justify-center">
@@ -24,15 +50,15 @@ const { Content } = await render(entry);
               <Image
                 class="mx-auto mb-6 rounded-lg w-64"
                 src={image}
-                alt={imageAlt}
+                alt={safeImageAlt}
                 width={1024}
                 height={1024}
                 loading="eager"
               />
             )
           }
-          <h2 set:html={markdownify(title)} class="h3 mb-6" />
-            <Content />
+          <h2 set:html={markdownify(safeTitle)} class="h3 mb-6" />
+          {Content && <Content />}
         </div>
       </div>
     </div>
