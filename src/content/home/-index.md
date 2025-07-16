@@ -1,7 +1,7 @@
 ---
 title: Hello
-image: "@assets/lupa.png"
-image2: "@assets/text.png"
+image: "@assets/text_light.png"
+imageDark: "@assets/text_dark.png"
 imageAlt: Astrogon logo
 content: A rapidly-customizable template for a blog, documentation, and more.
 button:
