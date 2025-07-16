@@ -17,6 +17,12 @@ interface Props {
 }
 
 const { entry } = Astro.props;
+
+// Add null checks and default values
+if (!entry || !entry.data) {
+  throw new Error('Recipe entry or entry data is missing');
+}
+
 const {
   title,
   author,
@@ -30,6 +36,11 @@ const {
   instructions,
   notes,
 } = entry.data;
+
+// Safe author access with proper null checking
+const authorId = author?.id || null;
+const authorSlug = authorId ? slugify(authorId) : null;
+const authorName = authorId ? upperHumanize(authorId) : null;
 ---
 
 <BaseLayout title={title} description={description} image={image?.src}>
@@ -47,7 +58,7 @@ const {
                   <Image
                     class="w-full rounded-lg"
                     src={image}
-                    alt={imageAlt}
+                    alt={imageAlt || "Recipe image"}
                     width={1920}
                     height={1080}
                     loading="eager"
@@ -61,11 +72,11 @@ const {
             <div class="glass rounded-lg p-2 h-full intersect:animate-fadeUp opacity-0">
               <!-- Author -->
               {
-                author && (
+                authorId && authorSlug && authorName && (
                   <div class="m-4">
-                    <a href={`/authors/${slugify(author.id)}`}>
+                    <a href={`/authors/${authorSlug}`}>
                       <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
-                      {upperHumanize(author.id)}
+                      {authorName}
                     </a>
                   </div>
                 )
@@ -101,9 +112,9 @@ const {
               {
                 description && (
                   <div>
-                    {author || prepTime || servings || diet ? (
+                    {(authorId || prepTime || servings || diet) && (
                       <hr class="my-2" />
-                    ) : null}
+                    )}
                     <div class="m-4">
                       <div set:html={markdownify(description)} />
                     </div>
@@ -114,17 +125,17 @@ const {
           </section>
           <!-- Ingredients -->
           {
-            ingredients && (
+            ingredients && ingredients.list && ingredients.qty && (
               <section class="col basis-1/3 p-2 min-w-72">
                 <div class="glass rounded-lg p-4 intersect:animate-fadeUp opacity-0">
                   <h2 set:html="Ingredients" class="mb-2" />
                   <div class="row justify-center">
-                    {ingredients.list.map((it: string, index: number) => (
+                    {ingredients.list.map((ingredient: string, index: number) => (
                       <div class="row my-1">
-                        <div class="col-7" set:html={ingredients.list[index]} />
+                        <div class="col-7" set:html={ingredient} />
                         <div
                           class="col-5 text-right"
-                          set:html={ingredients.qty[index]}
+                          set:html={ingredients.qty[index] || ""}
                         />
                         <hr class="my-1" />
                       </div>
@@ -136,15 +147,15 @@ const {
           }
           <!-- Instructions -->
           {
-            instructions && (
+            instructions && instructions.length > 0 && (
               <section class="col basis-full p-2 min-w-72">
                 <div class="glass rounded-lg p-4 intersect:animate-fadeUp opacity-0">
                   <h2 set:html="Instructions" class="mb-2" />
                   <div class="row justify-center">
-                    {instructions.map((it: string, index: number) => (
+                    {instructions.map((instruction: string, index: number) => (
                       <div class="row my-1">
                         <div class="col">
-                          {index + 1}. {it}
+                          {index + 1}. {instruction}
                         </div>
                         <hr class="my-1" />
                       </div>
@@ -156,14 +167,14 @@ const {
           }
           <!-- Notes -->
           {
-            notes && (
+            notes && notes.length > 0 && (
               <section class="col basis-full p-2 min-w-72">
                 <div class="glass rounded-lg p-4 intersect:animate-fadeUp opacity-0">
                   <h2 set:html="Notes" class="mb-2" />
                   <div class="row justify-center">
-                    {notes.map((it: string, index: number) => (
+                    {notes.map((note: string, index: number) => (
                       <div class="row my-1">
-                        <div class="col">{it}</div>
+                        <div class="col">{note}</div>
                         <hr class="my-1" />
                       </div>
                     ))}
@@ -178,8 +189,8 @@ const {
           class="flex col-10 p-2 items-center justify-center lg:justify-end px-6"
         >
           <Share
-            title={title}
-            description={description}
+            title={title || "Recipe"}
+            description={description || ""}
             folder="recipes"
             id={entry.id}
           />
