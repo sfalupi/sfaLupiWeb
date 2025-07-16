@@ -3,7 +3,25 @@ import type { AboutEntry } from "@/types";
 import EntryLayout from "@components/about/EntryLayout.astro";
 import { getIndex } from "@lib/contentParser";
 
-const entry = (await getIndex("about")) as AboutEntry;
+let entry: AboutEntry;
+
+try {
+  entry = (await getIndex("about")) as AboutEntry;
+  
+  if (!entry) {
+    console.error('About entry not found');
+    return Astro.redirect('/404');
+  }
+  
+  if (!entry.data) {
+    console.error('About entry data is missing');
+    return Astro.redirect('/404');
+  }
+  
+} catch (error) {
+  console.error('Error loading about entry:', error);
+  return Astro.redirect('/404');
+}
 ---
 
 <EntryLayout entry={entry} />
