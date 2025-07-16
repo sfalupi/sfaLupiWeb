@@ -80,6 +80,7 @@ const home = defineCollection({
   schema: ({ image }) =>
     z.object({
       image: image().optional(),
+      imageDark: image().optional(),
       imageAlt: z.string().default(""),
       title: z.string(),
       content: z.string(),
