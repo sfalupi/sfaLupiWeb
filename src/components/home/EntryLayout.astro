@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { image, imageAlt, title, content, button, image2 } = entry.data;
+const { image, imageDark, imageAlt, title, content, button} = entry.data;
 ---
 
 <BaseLayout>
@@ -18,36 +18,76 @@ const { image, imageAlt, title, content, button, image2 } = entry.data;
   <section class="section">
     <div class="container">
       <div class="row justify-center">
-          {
-            image && (
-              <div class="blur-[0px]">
+        <!-- Wrap images in container with custom gap -->
+        <div class="flex flex-col items-center">
+          
+          <!-- First Image with Theme Switching -->
+          {(image || imageDark) && (
+            <div class="theme-image-wrapper">
+              {image && (
                 <Image
-                class="mb-6 w-64"
-                src={image}
-                alt={imageAlt}
-                width={1024}
-                height={1024}
-                loading="eager"
-              />
-              </div>
-              
-            )
-          }
-          {
-            image2 && (
-              <div class="blur-[0px]">
+                  class="custom-image-size light-mode-image select-none"
+                  src={image}
+                  alt={imageAlt}
+                  width={1024}
+                  height={1024}
+                  loading="eager"
+                />
+              )}
+              {imageDark && (
                 <Image
-                class="mb-6 w-64"
-                src={image2}
-                alt={imageAlt}
-                width={1024}
-                height={1024}
-                loading="eager"
-              />
-              </div>
-            )
-          }
+                  class="custom-image-size dark-mode-image select-none"
+                  src={imageDark}
+                  alt={imageAlt}
+                  width={1024}
+                  height={1024}
+                  loading="eager"
+                />
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .custom-image-size {
+    width: 800px;
+    height: 800px;
+    align-self: center;
+  }
+  
+  .theme-image-wrapper {
+    position: relative;
+    width: 800px;
+    height: 800px;
+  }
+  
+  .light-mode-image,
+  .dark-mode-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  /* Light mode: show light images, hide dark images */
+  .light-mode-image {
+    opacity: 1;
+  }
+  
+  .dark-mode-image {
+    opacity: 0;
+  }
+  
+  /* Dark mode: hide light images, show dark images */
+  html.dark .light-mode-image {
+    opacity: 0;
+  }
+  
+  html.dark .dark-mode-image {
+    opacity: 1;
+  }
+</style>
