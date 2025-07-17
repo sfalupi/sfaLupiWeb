@@ -18,30 +18,32 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
   <section class="section">
     <div class="container">
       <div class="row justify-center">
-        <!-- Wrap images in container with custom gap -->
-        <div class="flex flex-col items-center">
+        <!-- Responsive Image Container -->
+        <div class="flex flex-col items-center w-full">
           
-          <!-- First Image with Theme Switching -->
+          <!-- Responsive Image with Theme Switching -->
           {(image || imageDark) && (
-            <div class="theme-image-wrapper">
+            <div class="responsive-image-wrapper">
               {image && (
                 <Image
-                  class="custom-image-size light-mode-image select-none"
+                  class="responsive-image light-mode-image select-none"
                   src={image}
                   alt={imageAlt}
                   width={1024}
                   height={1024}
                   loading="eager"
+                  sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 800px, 600px"
                 />
               )}
               {imageDark && (
                 <Image
-                  class="custom-image-size dark-mode-image select-none"
+                  class="responsive-image dark-mode-image select-none"
                   src={imageDark}
                   alt={imageAlt}
                   width={1024}
                   height={1024}
                   loading="eager"
+                  sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 800px, 600px"
                 />
               )}
             </div>
@@ -53,24 +55,28 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
 </BaseLayout>
 
 <style>
-  .custom-image-size {
-    width: 800px;
-    height: 800px;
-    align-self: center;
-  }
-  
-  .theme-image-wrapper {
+  .responsive-image-wrapper {
     position: relative;
-    width: 800px;
-    height: 800px;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 1 / 1; /* Maintains square aspect ratio */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
-  .light-mode-image,
-  .dark-mode-image {
+  .responsive-image {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Maintains aspect ratio without cropping */
+    object-position: center;
     transition: opacity 0.3s ease-in-out;
+    max-width: 100%;
+    max-height: 100%;
   }
   
   /* Light mode: show light images, hide dark images */
@@ -89,5 +95,49 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
   
   html.dark .dark-mode-image {
     opacity: 1;
+  }
+
+  /* Responsive breakpoints for optimal sizing */
+  @media (max-width: 480px) {
+    .responsive-image-wrapper {
+      max-width: 95vw;
+      max-height: 95vw;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    .responsive-image-wrapper {
+      max-width: 90vw;
+      max-height: 90vw;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .responsive-image-wrapper {
+      max-width: 70vw;
+      max-height: 70vw;
+    }
+  }
+
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    .responsive-image-wrapper {
+      max-width: 800px;
+      max-height: 800px;
+    }
+  }
+
+  @media (min-width: 1201px) {
+    .responsive-image-wrapper {
+      max-width: 600px;
+      max-height: 600px;
+    }
+  }
+
+  /* Ensure images never break container */
+  .responsive-image-wrapper img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
   }
 </style>
