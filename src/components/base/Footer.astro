@@ -2,7 +2,7 @@
 import Social from "@components/common/Social.astro";
 ---
 
-<footer class="glass container lg:my-4 lg:rounded-lg intersect:animate-fadeUp opacity-0">
+<footer class="glass container lg:my-4 lg:rounded-lg intersect:animate-fadeUp opacity-0 mobile-footer">
   <div class="row py-2 lg:py-0 items-center flex-wrap-reverse">
     <div class="text-center lg:col-6 lg:mb-0 lg:text-left">
       <ul>
@@ -23,3 +23,27 @@ import Social from "@components/common/Social.astro";
     </div>
   </div>
 </footer>
+
+<style>
+  /* Mobile-specific footer adjustments */
+  @media (max-width: 767px) {
+    .mobile-footer {
+      margin-bottom: env(safe-area-inset-bottom);
+      padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+      position: relative;
+      z-index: 100;
+    }
+    
+    /* Ensure footer doesn't get covered by browser UI */
+    .mobile-footer {
+      min-height: calc(3rem + env(safe-area-inset-bottom));
+    }
+  }
+  
+  /* Desktop - keep original styling */
+  @media (min-width: 768px) {
+    .mobile-footer {
+      /* Original footer styling for desktop */
+    }
+  }
+</style>

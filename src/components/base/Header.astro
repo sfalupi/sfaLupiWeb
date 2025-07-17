@@ -35,7 +35,7 @@ const menu = [
 
 <header
   transition:persist
-  class={`container glass py-2 z-30 mb-4 lg:mt-4 lg:rounded-lg ${stickyHeader && "sticky top-0"}`}
+  class={`container glass py-2 z-30 mb-4 lg:mt-4 lg:rounded-lg mobile-header ${stickyHeader && "sticky top-0"}`}
 >
   <nav class="relative flex flex-wrap items-center justify-between">
     <!-- navbar toggler -->
@@ -81,3 +81,24 @@ const menu = [
     </div>
   </nav>
 </header>
+
+<style>
+  /* Mobile header adjustments */
+  @media (max-width: 767px) {
+    .mobile-header {
+      top: env(safe-area-inset-top);
+      padding-top: calc(0.5rem + env(safe-area-inset-top));
+      padding-left: calc(1rem + env(safe-area-inset-left));
+      padding-right: calc(1rem + env(safe-area-inset-right));
+    }
+    
+    .mobile-header.sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding-top: calc(0.5rem + env(safe-area-inset-top));
+    }
+  }
+</style>
