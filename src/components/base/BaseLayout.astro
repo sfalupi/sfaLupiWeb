@@ -121,17 +121,46 @@ const baseUrl = "https://janedoe.com";
     <Tooltips interactive={false} delay={[333, 0]} />
 
     <style>
-  @font-face {
-    font-family: "Belleza";
-    src: url("/fonts/Belleza-Regular.ttf") format("truetype");
-    font-display: swap;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: "Belleza"
-  }
-</style>
-
+      /* Belleza Font Definitions */
+      @font-face {
+        font-family: "Belleza";
+        src: url("/fonts/Belleza-Regular.ttf") format("truetype");
+        font-display: swap;
+        font-weight: 400;
+      }
+      
+      @font-face {
+        font-family: "Belleza";
+        src: url("/fonts/Belleza-Regular.ttf") format("truetype");
+        font-display: swap;
+        font-weight: 700;
+      }
+      
+      /* Apply Belleza to headings */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: "Belleza", serif !important;
+      }
+      
+      /* Apply Belleza to all bold text */
+      b, strong, .font-bold, .font-semibold {
+        font-family: "Belleza", serif !important;
+      }
+      
+      /* Apply Belleza to navigation and button text */
+      nav a, button, .btn {
+        font-family: "Belleza", serif;
+      }
+      
+      /* Apply Belleza to any text with font-weight 600 or higher */
+      * {
+        &[style*="font-weight: 600"],
+        &[style*="font-weight: 700"],
+        &[style*="font-weight: 800"],
+        &[style*="font-weight: 900"] {
+          font-family: "Belleza", serif !important;
+        }
+      }
+    </style>
   </head>
   <body>
     <Background />

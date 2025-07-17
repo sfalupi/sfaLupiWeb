@@ -1,10 +1,17 @@
-
-
 /* Belleza Regular */
 @font-face {
-  font-display: block;
+  font-display: swap;
   font-family: "Belleza";
   font-style: normal;
-  font-weight: 400;  /* Changed from 600 to 400 for regular weight */
-  src: url("/fonts/Belleza-Regular.ttf") format("truetype");  /* Fixed: removed /assets/ and fixed format */
+  font-weight: 400;
+  src: url("/fonts/Belleza-Regular.ttf") format("truetype");
+}
+
+/* Belleza Bold (using the same file but with bold weight) */
+@font-face {
+  font-display: swap;
+  font-family: "Belleza";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/Belleza-Regular.ttf") format("truetype");
 }

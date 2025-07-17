@@ -1,6 +1,5 @@
 ---
 import ThemeSwitcher from "@components/base/ThemeSwitcher.astro";
-import { IoSearch } from "react-icons/io5";
 
 const { pathname } = Astro.url;
 
@@ -16,20 +15,8 @@ const menu = [
     url: "/about",
   },
   {
-    name: "Docs",
-    url: "/docs",
-  },
-  {
-    name: "Blog",
-    url: "/blog",
-  },
-  {
     name: "Recipes",
     url: "/recipes",
-  },
-  {
-    name: "Poetry",
-    url: "/poetry",
   },
   {
     name: "Index Cards",
@@ -90,13 +77,6 @@ const menu = [
       }
     </ul>
     <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
-      <a
-        class="mr-4 inline-block border-border text-xl text-txt-p dark:border-darkmode-border dark:text-darkmode-txt-p"
-        href="/search"
-        aria-label="search"
-      >
-        <IoSearch />
-      </a>
       <ThemeSwitcher />
     </div>
   </nav>

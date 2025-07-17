@@ -8,9 +8,9 @@ interface Props {
   entry: AuthorsEntry;
 }
 
-const { entry }: Props = Astro.props;
+const { entry } = Astro.props;
 const { title, image, imageAlt, social } = entry.data;
-const bodyBrief = entry.body ? plainify(entry.body?.slice(0, 100)) : null;
+const bodyBrief: string | null = entry.body ? plainify(entry.body.slice(0, 100)) : null;
 ---
 
 <div class="mb-14 md:col-6 lg:col-4">
@@ -22,7 +22,7 @@ const bodyBrief = entry.body ? plainify(entry.body?.slice(0, 100)) : null;
         <Image
           class="mx-auto mb-6 rounded"
           src={image}
-          alt={imageAlt}
+          alt={imageAlt || "Author image"}
           width={120}
           height={120}
           loading="eager"
@@ -30,7 +30,7 @@ const bodyBrief = entry.body ? plainify(entry.body?.slice(0, 100)) : null;
       )
     }
     <h4 class="mb-3">
-      <a href={`/authors/${entry.id}`}>{title}</a>
+      {title}
     </h4>
     {bodyBrief && <p class="mb-4">{bodyBrief}</p>}
     <Social links={social} />

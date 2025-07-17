@@ -17,7 +17,7 @@ const { authorIndex, entries } = Astro.props;
   <section class="section-sm pb-0">
     <div class="container">
       <div class="row justify-center">
-        {entries.map((entry) => <AuthorCard entry={entry} />)}
+        {entries.map((entry: AuthorsEntry) => <AuthorCard entry={entry} />)}
       </div>
     </div>
   </section>

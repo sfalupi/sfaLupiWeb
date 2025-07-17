@@ -1,37 +1,65 @@
-// Section
-.section {
-  @apply py-12 xl:py-16;
-  &-sm {
-    @apply py-8 xl:py-12;
+/* Add this to your utilities.scss or create a new file */
+
+// Belleza Font Utilities
+.font-belleza {
+  font-family: 'Belleza', serif !important;
+}
+
+.font-belleza-bold {
+  font-family: 'Belleza', serif !important;
+  font-weight: 700 !important;
+}
+
+.font-belleza-semibold {
+  font-family: 'Belleza', serif !important;
+  font-weight: 600 !important;
+}
+
+// Apply Belleza globally to all bold elements
+* {
+  &.font-bold,
+  &.font-semibold,
+  &.font-medium {
+    font-family: 'Belleza', serif !important;
   }
 }
 
-// Container
-.container {
-  @apply mx-auto max-w-[1200px] px-4;
+// Navigation specific styling
+nav {
+  a, button {
+    font-family: 'Belleza', serif;
+    
+    &.font-semibold,
+    &.font-bold {
+      font-family: 'Belleza', serif !important;
+    }
+  }
 }
 
-// Border
-.rounded-sm {
-  @apply rounded-[4px];
-}
-.rounded {
-  @apply rounded-[6px];
-}
-.rounded-lg {
-  @apply rounded-[12px];
-}
-.rounded-xl {
-  @apply rounded-[16px];
+// Button styling
+button, .btn {
+  font-family: 'Belleza', serif;
 }
 
-// Header Conditionals
-input#nav-toggle:checked + label #show-button {
-  @apply hidden;
+// Form labels and important text
+label, .label {
+  &.font-semibold,
+  &.font-bold {
+    font-family: 'Belleza', serif !important;
+  }
 }
-input#nav-toggle:checked + label #hide-button {
-  @apply block;
+
+// Card titles and important elements
+.card-title,
+.title,
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Belleza', serif !important;
 }
-input#nav-toggle:checked ~ #nav-menu {
-  @apply block;
+
+// Override any Tailwind font utilities that might conflict
+.font-sans {
+  &.font-bold,
+  &.font-semibold {
+    font-family: 'Belleza', serif !important;
+  }
 }

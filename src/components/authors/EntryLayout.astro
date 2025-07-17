@@ -1,17 +1,16 @@
 ---
-import BlogCard from "@components/blog/Card.astro";
 import Social from "@components/common/Social.astro";
 import BaseLayout from "@components/base/BaseLayout.astro";
 import { Image } from "astro:assets";
 import { render } from "astro:content";
-import type { AuthorsEntry, BlogEntry } from "@/types";
+import type { AuthorsEntry } from "@/types";
 
 interface Props {
   entry: AuthorsEntry;
-  recentBlogEntries: BlogEntry[];
+  recentBlogEntries?: any[]; // Made optional since we don't have blog entries anymore
 }
 
-const { entry, recentBlogEntries } = Astro.props;
+const { entry, recentBlogEntries = [] } = Astro.props;
 const { title, social, description, image, imageAlt } = entry.data;
 
 const { Content } = await render(entry);
@@ -20,9 +19,7 @@ const { Content } = await render(entry);
 <BaseLayout title={title} description={description} image={image?.src}>
   <section class="section-sm pb-0">
     <div class="container">
-      <div
-        class="row justify-center border-b border-border pb-14 dark:border-darkmode-border"
-      >
+      <div class="row justify-center">
         <div
           class="glass rounded-lg p-4 text-center lg:col-4 intersect:animate-fadeUp opacity-0"
         >
@@ -44,15 +41,6 @@ const { Content } = await render(entry);
           </div>
           <Social links={social} />
         </div>
-      </div>
-      <div class="row justify-center pb-16 pt-14">
-        {
-          recentBlogEntries.map((entry) => (
-            <div class="mb-8 md:col-6 lg:col-4">
-              <BlogCard entry={entry} />
-            </div>
-          ))
-        }
       </div>
     </div>
   </section>

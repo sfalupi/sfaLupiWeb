@@ -26,6 +26,24 @@
   @apply prose-td:relative prose-td:z-10 prose-td:px-3 prose-td:py-2 prose-td:text-txt-s prose-td:dark:text-darkmode-txt-s;
   // Lists
   @apply prose-li:text-txt-s prose-li:dark:text-darkmode-txt-s;
+  
+  // Apply Belleza to headings in content
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Belleza', serif !important;
+  }
+  
+  // Apply Belleza to bold text in content
+  strong, b {
+    font-family: 'Belleza', serif !important;
+    font-weight: 700 !important;
+  }
+  
+  // Apply Belleza to table headers
+  th {
+    font-family: 'Belleza', serif !important;
+    font-weight: 600 !important;
+  }
+  
   li::marker {
     @apply text-txt-s dark:text-darkmode-txt-s;
   }
