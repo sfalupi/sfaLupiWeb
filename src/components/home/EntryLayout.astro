@@ -15,75 +15,52 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
 
 <BaseLayout>
   <!-- Banner -->
-  <section class="section h-screen overflow-hidden">
-    <div class="w-full h-full">
-      <!-- Perfectly Centered Container -->
-      <div class="fixed inset-0 flex items-center justify-center">
-        <!-- Responsive Image with Theme Switching -->
-        {(image || imageDark) && (
-          <div class="responsive-image-wrapper">
-            {image && (
-              <Image
-                class="responsive-image light-mode-image select-none"
-                src={image}
-                alt={imageAlt}
-                width={1024}
-                height={1024}
-                loading="eager"
-                sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 800px, 600px"
-              />
-            )}
-            {imageDark && (
-              <Image
-                class="responsive-image dark-mode-image select-none"
-                src={imageDark}
-                alt={imageAlt}
-                width={1024}
-                height={1024}
-                loading="eager"
-                sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 800px, 600px"
-              />
-            )}
-          </div>
-        )}
+  <section class="section">
+    <div class="container">
+      <div class="row justify-center">
+        <!-- Responsive Image Container -->
+        <div class="flex flex-col items-center w-full">
+          
+          <!-- Responsive Image with Theme Switching -->
+          {(image || imageDark) && (
+            <div class="responsive-image-wrapper">
+              {image && (
+                <Image
+                  class="responsive-image light-mode-image select-none"
+                  src={image}
+                  alt={imageAlt}
+                  width={1024}
+                  height={1024}
+                  loading="eager"
+                  sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 800px, 600px"
+                />
+              )}
+              {imageDark && (
+                <Image
+                  class="responsive-image dark-mode-image select-none"
+                  src={imageDark}
+                  alt={imageAlt}
+                  width={1024}
+                  height={1024}
+                  loading="eager"
+                  sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 800px, 600px"
+                />
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  /* Disable scrolling on home page */
-  :global(html, body) {
-    overflow: hidden;
-    height: 100vh;
-    max-height: 100vh;
-  }
-
-  :global(#main-content) {
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  /* Ensure perfect centering by accounting for header */
-  :global(header) {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-  }
-
-  .section {
-    position: relative;
-    z-index: 10;
-  }
-
   .responsive-image-wrapper {
     position: relative;
     width: 100%;
     max-width: 800px;
     aspect-ratio: 1 / 1; /* Maintains square aspect ratio */
-    margin: 0; /* Remove auto margins that might cause centering issues */
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -162,13 +139,5 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
     max-height: 100% !important;
     width: auto !important;
     height: auto !important;
-  }
-
-  /* Additional centering fixes */
-  .responsive-image-wrapper {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
   }
 </style>
