@@ -15,7 +15,7 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
 
 <BaseLayout>
   <!-- Banner -->
-  <section class="section">
+  <section>
     <div class="container">
       <div class="row justify-center">
         <!-- Responsive Image Container -->
@@ -29,8 +29,6 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
                   class="responsive-image light-mode-image select-none"
                   src={image}
                   alt={imageAlt}
-                  width={1024}
-                  height={1024}
                   loading="eager"
                   sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 800px, 600px"
                 />
@@ -40,8 +38,6 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
                   class="responsive-image dark-mode-image select-none"
                   src={imageDark}
                   alt={imageAlt}
-                  width={1024}
-                  height={1024}
                   loading="eager"
                   sizes="(max-width: 480px) 95vw, (max-width: 768px) 90vw, (max-width: 1200px) 800px, 600px"
                 />
@@ -59,7 +55,6 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
     position: relative;
     width: 100%;
     max-width: 800px;
-    aspect-ratio: 1 / 1; /* Maintains square aspect ratio */
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -67,16 +62,10 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
   }
   
   .responsive-image {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: contain; /* Maintains aspect ratio without cropping */
-    object-position: center;
-    transition: opacity 0.3s ease-in-out;
+    height: auto;
     max-width: 100%;
-    max-height: 100%;
+    transition: opacity 0.3s ease-in-out;
   }
   
   /* Light mode: show light images, hide dark images */
@@ -86,6 +75,10 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
   
   .dark-mode-image {
     opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   /* Dark mode: hide light images, show dark images */
@@ -101,43 +94,30 @@ const { image, imageDark, imageAlt, title, content, button} = entry.data;
   @media (max-width: 480px) {
     .responsive-image-wrapper {
       max-width: 95vw;
-      max-height: 95vw;
     }
   }
 
   @media (min-width: 481px) and (max-width: 768px) {
     .responsive-image-wrapper {
       max-width: 90vw;
-      max-height: 90vw;
     }
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
     .responsive-image-wrapper {
       max-width: 70vw;
-      max-height: 70vw;
     }
   }
 
   @media (min-width: 1025px) and (max-width: 1200px) {
     .responsive-image-wrapper {
       max-width: 800px;
-      max-height: 800px;
     }
   }
 
   @media (min-width: 1201px) {
     .responsive-image-wrapper {
       max-width: 600px;
-      max-height: 600px;
     }
-  }
-
-  /* Ensure images never break container */
-  .responsive-image-wrapper img {
-    max-width: 100% !important;
-    max-height: 100% !important;
-    width: auto !important;
-    height: auto !important;
   }
 </style>
