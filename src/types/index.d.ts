@@ -4,7 +4,7 @@ import type { MarkdownHeading } from "astro";
 export type GenericEntry = CollectionEntry<CollectionKey>;
 
 export type AboutEntry = CollectionEntry<"about">;
-export type AuthorsEntry = CollectionEntry<"contact">;
+export type AuthorsEntry = CollectionEntry<"contacts">;
 export type HomeEntry = CollectionEntry<"home">;
 export type RecipesEntry = CollectionEntry<"texturepacks">;
 export type TermsEntry = CollectionEntry<"terms">;

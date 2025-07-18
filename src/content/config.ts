@@ -34,10 +34,10 @@ const about = defineCollection({
     }),
 });
 
-const contact = defineCollection({
+const contacts = defineCollection({
   loader: glob({
     pattern: "**\/[^_]*.{md,mdx}",
-    base: "./src/content/contact",
+    base: "./src/content/contacts",
   }),
   schema: ({ image }) =>
     searchable.extend({
@@ -131,6 +131,7 @@ const commissions = defineCollection({
       imageAlt: z.string().default(""),
       author: reference("contact").optional(),
       downloadLink: z.string().url().optional(), // Add this new field
+      ducksabervn: z.string().url().optional(),
       prepTime: z.number().optional(),
       servings: z.number().optional(),
       diet: z.string().optional(),
@@ -153,7 +154,7 @@ const terms = defineCollection({
 // Export collections
 export const collections = {
   about,
-  contact,
+  contacts,
   home,
   texturepacks,
   terms,

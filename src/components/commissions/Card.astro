@@ -6,10 +6,32 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, image, imageAlt } = entry.data;
+const { title, image, imageAlt, ducksabervn } = entry.data;
 
 // Get the raw image src (bypassing Astro's image optimization)
 const imageSrc = image ? image.src : null;
+
+// Function to parse title and make @username clickable
+const parseTitle = (title: string, ducksabervn?: string) => {
+  if (!ducksabervn) return title;
+  
+  // Look for @username pattern in the title
+  const atPattern = /@[\w]+/g;
+  const matches = title.match(atPattern);
+  
+  if (!matches) return title;
+  
+  // Replace @username with clickable link
+  let parsedTitle = title;
+  matches.forEach(match => {
+    const linkHtml = `<a href="${ducksabervn}" target="_blank" rel="noopener noreferrer" class="text-txt-p dark:text-darkmode-txt-p hover:opacity-60 transition-opacity">${match}</a>`;
+    parsedTitle = parsedTitle.replace(match, linkHtml);
+  });
+  
+  return parsedTitle;
+};
+
+const parsedTitle = parseTitle(title, ducksabervn);
 ---
 
 <div
@@ -33,9 +55,9 @@ const imageSrc = image ? image.src : null;
           )
         }
       </div>
-      <!-- Title with Sansation Bold font -->
+      <!-- Title with Sansation Bold font and clickable @username -->
       <div class="p-4 text-center">
-        <h3 class="sansation-title text-txt-p dark:text-darkmode-txt-p">{title}</h3>
+        <h3 class="sansation-title text-txt-p dark:text-darkmode-txt-p" set:html={parsedTitle}></h3>
       </div>
     </div>
   </div>
