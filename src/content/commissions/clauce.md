@@ -1,5 +1,5 @@
 ---
-title:  Rosae 16x
+title:  Banner for @claucefx
 description: A simple, authentic Italian-style pizza with fresh ingredients and a perfect crispy crust.
 image: "@assets/commissions/image.png"
 downloadLink: https://www.youtube.com/watch?v=Nq1wM28YNmA&t=2s

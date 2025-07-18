@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import type { CommissionsEntry } from "@/types";
 
 interface Props {
@@ -7,59 +6,163 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, image, imageAlt, downloadLink } = entry.data;
+const { title, image, imageAlt } = entry.data;
 
-// Determine the link - use downloadLink if available, otherwise fallback to internal route
-const linkUrl = downloadLink || `/commissions/${entry.id}`;
-const isExternalLink = !!downloadLink;
+// Get the raw image src (bypassing Astro's image optimization)
+const imageSrc = image ? image.src : null;
 ---
 
 <div
-  class="h-full m-2 pl-0 bg-gradient-to-br gradient rounded-lg intersect:animate-fadeUp opacity-0"
+  class="h-full m-6 pl-0 bg-gradient-to-br gradient rounded-lg intersect:animate-fadeUp opacity-0"
 >
   <div class="glass h-full rounded-lg">
-    <a 
-      class="group hover:opacity-100 block" 
-      href={linkUrl}
-      target={isExternalLink ? "_blank" : "_self"}
-      rel={isExternalLink ? "noopener noreferrer" : ""}
+    <div 
+      class="hover:opacity-90 block cursor-default" 
       title={title}
     >
-      <div class="relative rounded-lg pb-9/16 overflow-hidden">
+      <div class="relative rounded-lg overflow-hidden flex items-center justify-center">
         {
-          image && (
-            <Image
-              class="absolute rounded-lg object-cover w-full h-full group-hover:scale-[105%] transition-all duration-300"
-              src={image}
+          imageSrc && (
+            <img
+              class="pixel-art-image hover:scale-[102%] transition-all duration-300"
+              src={imageSrc}
               alt={imageAlt}
-              width={1280}
-              height={720}
               loading="eager"
+              onload="resizePixelArt(this)"
             />
           )
         }
-        <!-- Optional: Add a subtle hover effect or download icon -->
-        {isExternalLink && (
-          <div class="absolute top-2 right-2 bg-black bg-opacity-50 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-            </svg>
-          </div>
-        )}
       </div>
       <!-- Title with Sansation Bold font -->
       <div class="p-4 text-center">
         <h3 class="sansation-title text-txt-p dark:text-darkmode-txt-p">{title}</h3>
       </div>
-    </a>
+    </div>
   </div>
 </div>
 
+<script>
+  function resizePixelArt(img) {
+    const aspectRatio = img.naturalWidth / img.naturalHeight;
+    const width = img.naturalWidth;
+    const height = img.naturalHeight;
+    
+    // Remove any existing size classes
+    img.classList.remove('desktop-wallpaper', 'phone-wallpaper', 'square-art', 'banner-art', 'icon-art');
+    
+    // Determine the type of image and apply appropriate sizing
+    if (aspectRatio > 2) {
+      // Very wide images (banners, headers)
+      img.classList.add('banner-art');
+    } else if (aspectRatio > 1.5) {
+      // Wide images (desktop wallpapers, landscapes)
+      img.classList.add('desktop-wallpaper');
+    } else if (aspectRatio < 0.7) {
+      // Tall images (phone wallpapers, portraits)
+      img.classList.add('phone-wallpaper');
+    } else if (aspectRatio >= 0.9 && aspectRatio <= 1.1) {
+      // Square or nearly square images
+      img.classList.add('square-art');
+    } else if (width <= 128 && height <= 128) {
+      // Small images (icons, avatars)
+      img.classList.add('icon-art');
+    } else {
+      // Default sizing for other ratios
+      img.classList.add('square-art');
+    }
+  }
+</script>
+
 <style>
+  .pixel-art-image {
+    /* Ensure pixel art renders crisp */
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+    
+    /* Base styling */
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Desktop wallpapers and landscapes */
+  .pixel-art-image.desktop-wallpaper {
+    max-width: 480px;
+    max-height: 270px;
+    width: auto;
+    height: auto;
+  }
+  
+  /* Phone wallpapers and portraits */
+  .pixel-art-image.phone-wallpaper {
+    max-width: 200px;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+  }
+  
+  /* Square artwork */
+  .pixel-art-image.square-art {
+    max-width: 320px;
+    max-height: 320px;
+    width: auto;
+    height: auto;
+  }
+  
+  /* Banner/header artwork */
+  .pixel-art-image.banner-art {
+    max-width: 600px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+  }
+  
+  /* Small icons and avatars */
+  .pixel-art-image.icon-art {
+    max-width: 128px;
+    max-height: 128px;
+    width: auto;
+    height: auto;
+    /* Scale up small images to be more visible */
+    transform: scale(2);
+  }
+  
+  /* Mobile responsive adjustments */
+  @media (max-width: 768px) {
+    .pixel-art-image.desktop-wallpaper {
+      max-width: 300px;
+      max-height: 169px;
+    }
+    
+    .pixel-art-image.phone-wallpaper {
+      max-width: 150px;
+      max-height: 300px;
+    }
+    
+    .pixel-art-image.square-art {
+      max-width: 250px;
+      max-height: 250px;
+    }
+    
+    .pixel-art-image.banner-art {
+      max-width: 100%;
+      max-height: 150px;
+    }
+    
+    .pixel-art-image.icon-art {
+      transform: scale(1.5);
+    }
+  }
+
   .sansation-title {
-    font-family: "Sansation Bold", sans-serif;
-    font-size: 1.5rem; /* 18px - equivalent to text-lg */
-    font-weight: 700;
+    font-family: "Sansation Bold", sans-serif !important;
+    font-size: 1.5rem; /* 24px - equivalent to text-xl */
+    font-weight: 700 !important;
     line-height: 1.4;
   }
   

@@ -1,5 +1,5 @@
 ---
-import type { RecipesEntry } from "@/types";
+import type { PixelArtsEntry } from "@/types";
 import Share from "@components/common/Share.astro";
 import { Image } from "astro:assets";
 import BaseLayout from "@components/base/BaseLayout.astro";
@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 
 interface Props {
-  entry: RecipesEntry;
+  entry: PixelArtsEntry;
 }
 
 const { entry } = Astro.props;
@@ -74,7 +74,7 @@ const authorName = authorId ? upperHumanize(authorId) : null;
               {
                 authorId && authorSlug && authorName && (
                   <div class="m-4">
-                    <a href={`/authors/${authorSlug}`}>
+                    <a href={`/contacts/${authorSlug}`}>
                       <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
                       {authorName}
                     </a>
@@ -189,9 +189,9 @@ const authorName = authorId ? upperHumanize(authorId) : null;
           class="flex col-10 p-2 items-center justify-center lg:justify-end px-6"
         >
           <Share
-            title={title || "texturepacks"}
+            title={title || "pixelarts"}
             description={description || ""}
-            folder="texturepacks"
+            folder="pixelarts"
             id={entry.id}
           />
         </div>

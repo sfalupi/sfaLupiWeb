@@ -1,5 +1,5 @@
 ---
-title:  Stellar 16x
+title:  Wallpaper for @arikdzn
 description: A juicy roasted chicken infused with zesty lemon and fragrant herbs, perfect for a family dinner.
 image: "@assets/commissions/arik.png"
 downloadLink: https://www.youtube.com/watch?v=SXMZ-PwHTdk&t=231s
