@@ -1,7 +1,8 @@
 ---
-title:  Cerulean 16x
+title:  f
+order: 6
 description: A classic Italian pasta dish featuring creamy eggs, crispy pancetta, and sharp Pecorino cheese.
-image: "@assets/pixelarts/pack5.png"
+image: "@assets/pixelarts/sky3.png"
 downloadLink: https://www.youtube.com/watch?v=JzS6WKDXUcc
 author: john-doe
 prepTime: 30

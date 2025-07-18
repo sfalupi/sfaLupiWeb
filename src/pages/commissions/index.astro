@@ -1,11 +1,11 @@
 ---
 import CollectionLayout from "@components/commissions/CollectionLayout.astro";
 import { getIndex, getEntries } from "@lib/contentParser";
-import { sortByDate } from "@lib/sortFunctions";
+import { sortByOrder } from "@lib/sortFunctions";
 import type { CommissionsEntry } from "@/types";
 
 const entryIndex = (await getIndex("commissions")) as CommissionsEntry;
-const entries = (await getEntries("commissions", sortByDate)) as CommissionsEntry[];
+const entries = (await getEntries("commissions", sortByOrder)) as CommissionsEntry[];
 
 const { slug } = Astro.params;
 

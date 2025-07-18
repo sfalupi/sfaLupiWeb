@@ -1,11 +1,11 @@
 ---
 import CollectionLayout from "@components/pixelarts/CollectionLayout.astro";
 import { getIndex, getEntries } from "@lib/contentParser";
-import { sortByDate } from "@lib/sortFunctions";
+import { sortByOrder } from "@lib/sortFunctions";
 import type { PixelArtsEntry } from "@/types";
 
 const entryIndex = (await getIndex("pixelarts")) as PixelArtsEntry;
-const entries = (await getEntries("pixelarts", sortByDate)) as PixelArtsEntry[];
+const entries = (await getEntries("pixelarts", sortByOrder)) as PixelArtsEntry[];
 
 const { slug } = Astro.params;
 

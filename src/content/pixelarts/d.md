@@ -1,7 +1,8 @@
 ---
-title:  Rosae 16x
+title:  d
+order: 4
 description: A simple, authentic Italian-style pizza with fresh ingredients and a perfect crispy crust.
-image: "@assets/pixelarts/pack3.png"
+image: "@assets/pixelarts/looshyfanart.png"
 downloadLink: https://www.youtube.com/watch?v=Nq1wM28YNmA&t=2s
 author: jane-doe
 prepTime: 60

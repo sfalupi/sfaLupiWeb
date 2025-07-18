@@ -1,12 +1,13 @@
 ---
 title: Phantom 16x
 description: A moist, flavorful banana bread made with overripe bananas, perfect for breakfast or a snack.
-image: "@assets/pixelarts/pack1.png"
+image: "@assets/commissions/banner.png"
 downloadLink: https://www.youtube.com/watch?v=rkogbQI_bn8
 author: jane-doe
 prepTime: 15
 cook_time: 60
 servings: 8
+order: 3
 diet: Vegetarian
 
 ingredients:

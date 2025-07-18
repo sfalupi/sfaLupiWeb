@@ -47,6 +47,26 @@ const isExternalLink = !!downloadLink;
           </div>
         )}
       </div>
+      <!-- Title with Sansation Bold font -->
+      <div class="p-4 text-center">
+        <h3 class="sansation-title text-txt-p dark:text-darkmode-txt-p">{title}</h3>
+      </div>
     </a>
   </div>
 </div>
+
+<style>
+  .sansation-title {
+    font-family: "Sansation Bold", sans-serif;
+    font-size: 1.5rem; /* 18px - equivalent to text-lg */
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  
+  /* Mobile responsive - slightly smaller on mobile */
+  @media (max-width: 768px) {
+    .sansation-title {
+      font-size: 1rem; /* 16px - equivalent to text-base */
+    }
+  }
+</style>

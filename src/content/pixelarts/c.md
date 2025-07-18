@@ -1,7 +1,8 @@
 ---
-title:  Stellar 16x
+title:  c
+order: 3
 description: A juicy roasted chicken infused with zesty lemon and fragrant herbs, perfect for a family dinner.
-image: "@assets/pixelarts/pack2.png"
+image: "@assets/pixelarts/kippu.png"
 downloadLink: https://www.youtube.com/watch?v=SXMZ-PwHTdk&t=231s
 author: jane-doe
 prepTime: 90

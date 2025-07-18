@@ -2,11 +2,11 @@
 import type { CommissionsEntry } from "@/types";
 import EntryLayout from "@components/commissions/EntryLayout.astro";
 import { getEntries } from "@lib/contentParser";
-import { sortByTitle } from "@lib/sortFunctions";
+import { sortByOrder } from "@lib/sortFunctions";
 
 export async function getStaticPaths() {
   try {
-    const entries = await getEntries("commissions", sortByTitle) as CommissionsEntry[];
+    const entries = await getEntries("commissions", sortByOrder) as CommissionsEntry[];
     
     if (!entries || entries.length === 0) {
       console.warn('No recipe entries found');

@@ -100,10 +100,10 @@ const pixelarts = defineCollection({
   schema: ({ image }) =>
     searchable.extend({
       date: z.date().optional(),
+      order: z.number().optional(),
       image: image().optional(),
       imageAlt: z.string().default(""),
       author: reference("contact").optional(),
-      downloadLink: z.string().url().optional(), // Add this new field
       prepTime: z.number().optional(),
       servings: z.number().optional(),
       diet: z.string().optional(),

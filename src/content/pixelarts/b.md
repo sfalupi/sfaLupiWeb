@@ -1,7 +1,8 @@
 ---
-title:  Plum 16x
+title:  b
+order: 2
 description: A hearty, warming chili packed with sweet potatoes, black beans, and spices, perfect for a cozy meal.
-image: "@assets/commissions/pack6.png"
+image: "@assets/pixelarts/soth.png"
 downloadLink: https://www.youtube.com/watch?v=C9kpK56BHyQ&t=4s
 author: jane-doe
 prepTime: 45

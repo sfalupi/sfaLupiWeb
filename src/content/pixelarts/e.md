@@ -1,7 +1,8 @@
 ---
-title:  Lupifault 16x
+title:  e
+order: 5
 description: A rich and comforting risotto made with earthy mushrooms and creamy Parmesan.
-image: "@assets/pixelarts/pack4.png"
+image: "@assets/pixelarts/sky.png"
 downloadLink: https://www.youtube.com/watch?v=1HSgHm4E8rs
 author: jane-doe
 prepTime: 45

@@ -22,11 +22,11 @@ const { entryIndex, entries, pageIndex, pageCount }: Props = Astro.props;
 >
   <PageHeader title={entryIndex.data.title} />
   <section class="section m-2">
-    <div class="container">
+    <div class="container max-w-6xl">
       <div class="row">
         {
           entries.map((entry) => (
-            <div class="md:col-6 lg:col-4 h-min p-2">
+            <div class="col-12 md:col-6 p-2">
               <RecipeCard entry={entry} />
             </div>
           ))

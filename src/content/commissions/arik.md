@@ -1,11 +1,12 @@
 ---
 title:  Stellar 16x
 description: A juicy roasted chicken infused with zesty lemon and fragrant herbs, perfect for a family dinner.
-image: "@assets/commissions/pack2.png"
+image: "@assets/commissions/arik.png"
 downloadLink: https://www.youtube.com/watch?v=SXMZ-PwHTdk&t=231s
 author: jane-doe
 prepTime: 90
 servings: 4
+order: 2
 diet: Gluten-Free
 
 ingredients:

@@ -23,3 +23,13 @@ export const sortByRandom = (entries: GenericEntry[]): GenericEntry[] => {
   const sortedEntries = entries.sort(() => Math.random() - 0.5);
   return sortedEntries;
 };
+
+// Sort by custom order field
+export const sortByOrder = (entries: GenericEntry[]): GenericEntry[] => {
+  const sortedEntries = entries.sort((a: any, b: any) => {
+    const orderA = a.data.order ?? 999; // Default to 999 if no order specified
+    const orderB = b.data.order ?? 999;
+    return orderA - orderB;
+  });
+  return sortedEntries;
+};

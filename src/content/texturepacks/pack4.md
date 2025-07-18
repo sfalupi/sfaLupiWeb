@@ -1,57 +1,57 @@
 ---
-title:  Lupifault 16x
-description: A rich and comforting risotto made with earthy mushrooms and creamy Parmesan.
-image: "@assets/texturepacks/pack4.png"
-downloadLink: https://www.youtube.com/watch?v=1HSgHm4E8rs
+title:  Stellar 16x
+description: A juicy roasted chicken infused with zesty lemon and fragrant herbs, perfect for a family dinner.
+image: "@assets/texturepacks/pack2.png"
+downloadLink: https://www.youtube.com/watch?v=SXMZ-PwHTdk&t=231s
 author: jane-doe
-prepTime: 45
+prepTime: 90
 servings: 4
-diet: Vegetarian
+order: 2
+diet: Gluten-Free
 
 ingredients:
   list:
-    - Arborio rice
-    - Vegetable broth
-    - White mushrooms
-    - Shiitake mushrooms
-    - Shallot
+    - Whole chicken
+    - Lemons
+    - Fresh rosemary
+    - Fresh thyme
     - Garlic
-    - White wine
-    - Parmesan cheese
-    - Butter
     - Olive oil
+    - Butter
     - Salt
     - Black pepper
-    - Fresh parsley
+    - Carrots
+    - Potatoes
+    - Onion
   qty:
-    - 1&frasl;2 cups
-    - 4 cups
-    - 1 cup (sliced)
-    - 1 cup (sliced)
-    - 1 (finely chopped)
-    - 2 cloves (minced)
-    - 1&frasl;2 cup
-    - 1&frasl;2 cup (grated)
-    - 2 tbsp
-    - 2 tbsp
-    - pinch
-    - pinch
-    - some (for garnish)
+    - 1 (about 4 lbs)
+    - 2 (halved)
+    - 2 sprigs
+    - 4 sprigs
+    - 6 cloves (smashed)
+    - 3 tbsp
+    - 2 tbsp (softened)
+    - some
+    - some
+    - 3 (peeled, cut into chunks)
+    - 4 (quartered)
+    - 1 (quartered)
 
 instructions:
-  - Heat the vegetable broth in a pot and keep it warm on low heat.
-  - In a large skillet, heat olive oil and sauté the mushrooms until browned; set aside.
-  - Add butter to the same skillet and cook the shallot and garlic until fragrant.
-  - Stir in the Arborio rice, cooking for 1-2 minutes until lightly toasted.
-  - Deglaze the pan with white wine, stirring until the liquid is absorbed.
-  - Begin adding the warm broth one ladle at a time, stirring frequently and allowing each addition to be absorbed before adding more.
-  - After 20-25 minutes, when the rice is creamy and tender, stir in the sautéed mushrooms, Parmesan, salt, and pepper.
-  - Remove from heat and let sit for a minute before serving.
-  - Garnish with fresh parsley and additional Parmesan if desired.
+  - Preheat your oven to 425°F (220°C).
+  - Pat the chicken dry with paper towels, then season the cavity with salt and pepper.
+  - Stuff the cavity with lemon halves, 2 garlic cloves, and half of the rosemary and thyme.
+  - Mix softened butter with minced garlic, salt, pepper, and the remaining chopped herbs.
+  - Loosen the chicken skin and spread the butter mixture underneath, ensuring an even coating.
+  - Rub olive oil over the chicken's exterior and season generously with salt and pepper.
+  - Place the chicken in a roasting pan, surrounded by carrots, potatoes, and onion.
+  - Roast in the oven for about 1 hour 15 minutes, or until the internal temperature reaches 165°F (74°C) at the thickest part of the thigh.
+  - Baste the chicken with its drippings every 20 minutes for extra flavor and moisture.
+  - Let the chicken rest for 10-15 minutes before carving and serving.
 
 notes:
-  - Use a mix of mushrooms for a deeper, more complex flavor.
-  - Stirring frequently is key to achieving the creamy texture of risotto.
-  - For a non-vegetarian option, substitute chicken broth for vegetable broth.
-  - Serve with a crisp white wine, such as Pinot Grigio or Sauvignon Blanc.
+  - For crispier skin, roast the chicken uncovered.
+  - Swap in your favorite vegetables to customize the dish.
+  - Use the pan drippings to make a quick gravy by deglazing the pan with chicken stock and whisking in a bit of flour.
+  - Leftovers make excellent sandwiches or chicken salad.
 ---
