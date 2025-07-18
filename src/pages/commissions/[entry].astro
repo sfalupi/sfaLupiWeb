@@ -1,0 +1,45 @@
+---
+import type { CommissionsEntry } from "@/types";
+import EntryLayout from "@components/commissions/EntryLayout.astro";
+import { getEntries } from "@lib/contentParser";
+import { sortByTitle } from "@lib/sortFunctions";
+
+export async function getStaticPaths() {
+  try {
+    const entries = await getEntries("commissions", sortByTitle) as CommissionsEntry[];
+    
+    if (!entries || entries.length === 0) {
+      console.warn('No recipe entries found');
+      return [];
+    }
+    
+    const paths = entries.map((entry) => {
+      if (!entry || !entry.id) {
+        console.warn('Invalid recipe entry found:', entry);
+        return null;
+      }
+      
+      return {
+        params: {
+          entry: entry.id,
+        },
+        props: { entry },
+      };
+    }).filter(Boolean); // Remove null entries
+    
+    return paths;
+  } catch (error) {
+    console.error('Error generating recipe paths:', error);
+    return [];
+  }
+}
+
+const { entry } = Astro.props;
+
+// Additional safety check
+if (!entry) {
+  return Astro.redirect('/commissions');
+}
+---
+
+<EntryLayout entry={entry} />

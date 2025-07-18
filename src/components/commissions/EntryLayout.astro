@@ -1,0 +1,201 @@
+---
+import type { RecipesEntry } from "@/types";
+import Share from "@components/common/Share.astro";
+import { Image } from "astro:assets";
+import BaseLayout from "@components/base/BaseLayout.astro";
+import { upperHumanize, markdownify, slugify } from "@lib/textConverter";
+
+import {
+  FaRegClock,
+  FaRegUserCircle,
+  FaUtensils,
+  FaSeedling,
+} from "react-icons/fa";
+
+interface Props {
+  entry: RecipesEntry;
+}
+
+const { entry } = Astro.props;
+
+// Add null checks and default values
+if (!entry || !entry.data) {
+  throw new Error('Recipe entry or entry data is missing');
+}
+
+const {
+  title,
+  author,
+  description,
+  image,
+  imageAlt,
+  prepTime,
+  servings,
+  diet,
+  ingredients,
+  instructions,
+  notes,
+} = entry.data;
+
+// Safe author access with proper null checking
+const authorId = author?.id || null;
+const authorSlug = authorId ? slugify(authorId) : null;
+const authorName = authorId ? upperHumanize(authorId) : null;
+---
+
+<BaseLayout title={title} description={description} image={image?.src}>
+  <section class="section">
+    <div class="container">
+      <div class="row justify-center">
+        <article class="lg:col-10 flex flex-wrap content-start">
+          <!-- Title -->
+          <h1 set:html={title} class="p-2 col basis-full min-w-72" />
+          <!-- Cover Photo -->
+          {
+            image && (
+              <div class="col basis-2/3 p-2 min-w-72">
+                <div class="glass rounded-lg intersect:animate-fadeDown opacity-0">
+                  <Image
+                    class="w-full rounded-lg"
+                    src={image}
+                    alt={imageAlt || "Recipe image"}
+                    width={1920}
+                    height={1080}
+                    loading="eager"
+                  />
+                </div>
+              </div>
+            )
+          }
+          <!-- About -->
+          <section class="col basis-1/3 p-2 min-w-72">
+            <div class="glass rounded-lg p-2 h-full intersect:animate-fadeUp opacity-0">
+              <!-- Author -->
+              {
+                authorId && authorSlug && authorName && (
+                  <div class="m-4">
+                    <a href={`/authors/${authorSlug}`}>
+                      <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
+                      {authorName}
+                    </a>
+                  </div>
+                )
+              }
+              <!-- Prep Time -->
+              {
+                prepTime && (
+                  <div class="m-4">
+                    <FaRegClock className={"mr-2 -mt-1 inline-block"} />
+                    {prepTime + " minutes"}
+                  </div>
+                )
+              }
+              <!-- Servings -->
+              {
+                servings && (
+                  <div class="m-4">
+                    <FaUtensils className={"mr-2 -mt-1 inline-block"} />
+                    {servings === 1 ? "1 serving" : servings + " servings"}
+                  </div>
+                )
+              }
+              <!-- Diet -->
+              {
+                diet && (
+                  <div class="m-4">
+                    <FaSeedling className={"mr-2 -mt-1 inline-block"} />
+                    {diet}
+                  </div>
+                )
+              }
+              <!-- Description -->
+              {
+                description && (
+                  <div>
+                    {(authorId || prepTime || servings || diet) && (
+                      <hr class="my-2" />
+                    )}
+                    <div class="m-4">
+                      <div set:html={markdownify(description)} />
+                    </div>
+                  </div>
+                )
+              }
+            </div>
+          </section>
+          <!-- Ingredients -->
+          {
+            ingredients && ingredients.list && ingredients.qty && (
+              <section class="col basis-1/3 p-2 min-w-72">
+                <div class="glass rounded-lg p-4 intersect:animate-fadeUp opacity-0">
+                  <h2 set:html="Ingredients" class="mb-2" />
+                  <div class="row justify-center">
+                    {ingredients.list.map((ingredient: string, index: number) => (
+                      <div class="row my-1">
+                        <div class="col-7" set:html={ingredient} />
+                        <div
+                          class="col-5 text-right"
+                          set:html={ingredients.qty[index] || ""}
+                        />
+                        <hr class="my-1" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            )
+          }
+          <!-- Instructions -->
+          {
+            instructions && instructions.length > 0 && (
+              <section class="col basis-full p-2 min-w-72">
+                <div class="glass rounded-lg p-4 intersect:animate-fadeUp opacity-0">
+                  <h2 set:html="Instructions" class="mb-2" />
+                  <div class="row justify-center">
+                    {instructions.map((instruction: string, index: number) => (
+                      <div class="row my-1">
+                        <div class="col">
+                          {index + 1}. {instruction}
+                        </div>
+                        <hr class="my-1" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            )
+          }
+          <!-- Notes -->
+          {
+            notes && notes.length > 0 && (
+              <section class="col basis-full p-2 min-w-72">
+                <div class="glass rounded-lg p-4 intersect:animate-fadeUp opacity-0">
+                  <h2 set:html="Notes" class="mb-2" />
+                  <div class="row justify-center">
+                    {notes.map((note: string, index: number) => (
+                      <div class="row my-1">
+                        <div class="col">{note}</div>
+                        <hr class="my-1" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            )
+          }
+        </article>
+        <!-- Share -->
+        <div
+          class="flex col-10 p-2 items-center justify-center lg:justify-end px-6"
+        >
+          <Share
+            title={title || "texturepacks"}
+            description={description || ""}
+            folder="texturepacks"
+            id={entry.id}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

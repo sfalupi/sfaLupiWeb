@@ -9,6 +9,7 @@ export type HomeEntry = CollectionEntry<"home">;
 export type RecipesEntry = CollectionEntry<"texturepacks">;
 export type TermsEntry = CollectionEntry<"terms">;
 export type PixelArtsEntry = CollectionEntry<"pixelarts">
+export type CommissionsEntry = CollectionEntry<"commissions">
 
 export type SocialLinks = {
   discord?: string;
