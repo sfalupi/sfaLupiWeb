@@ -1,5 +1,5 @@
 ---
-title: For Business
+title: For Commission
 email: sfalupi.business@gmail.com
 social:
     discord: "https://discordapp.com/users/702142215920549889"
