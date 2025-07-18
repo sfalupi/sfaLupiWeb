@@ -1,7 +1,7 @@
 ---
 title:  fgsdfgsdfgsdfg
 description: A juicy roasted chicken infused with zesty lemon and fragrant herbs, perfect for a family dinner.
-image: "@assets/recipes/pack2.png"
+image: "@assets/texturepacks/pack2.png"
 author: jane-doe
 prepTime: 90
 servings: 4

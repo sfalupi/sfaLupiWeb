@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@components/base/BaseLayout.astro";
-import RecipeCard from "@components/recipes/Card.astro";
+import RecipeCard from "@components/texturepacks/Card.astro";
 import Pagination from "@components/common/Pagination.astro";
 import PageHeader from "@components/common/PageHeader.astro";
 import type { RecipesEntry } from "@/types";
@@ -33,7 +33,7 @@ const { entryIndex, entries, pageIndex, pageCount }: Props = Astro.props;
         }
       </div>
       <Pagination
-        collection="recipes"
+        collection="texturepacks"
         pageIndex={pageIndex}
         pageCount={pageCount}
       />

@@ -1,7 +1,7 @@
 ---
 title:  gsdfgsdfgsdfg
 description: A rich and comforting risotto made with earthy mushrooms and creamy Parmesan.
-image: "@assets/recipes/pack4.png"
+image: "@assets/texturepacks/pack4.png"
 author: jane-doe
 prepTime: 45
 servings: 4

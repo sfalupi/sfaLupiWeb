@@ -1,7 +1,7 @@
 ---
 title: gsdfgsdfgsdfg
 description: A moist, flavorful banana bread made with overripe bananas, perfect for breakfast or a snack.
-image: "@assets/recipes/pack1.png"
+image: "@assets/texturepacks/pack1.png"
 author: jane-doe
 prepTime: 15
 cook_time: 60

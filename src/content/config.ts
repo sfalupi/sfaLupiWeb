@@ -34,10 +34,10 @@ const about = defineCollection({
     }),
 });
 
-const authors = defineCollection({
+const contact = defineCollection({
   loader: glob({
     pattern: "**\/[^_]*.{md,mdx}",
-    base: "./src/content/authors",
+    base: "./src/content/contact",
   }),
   schema: ({ image }) =>
     searchable.extend({
@@ -83,17 +83,17 @@ const portfolio = defineCollection({
   }),
 });
 
-const recipes = defineCollection({
+const texturepacks = defineCollection({
   loader: glob({
     pattern: "**\/[^_]*.{md,mdx}",
-    base: "./src/content/recipes",
+    base: "./src/content/texturepacks",
   }),
   schema: ({ image }) =>
     searchable.extend({
       date: z.date().optional(),
       image: image().optional(),
       imageAlt: z.string().default(""),
-      author: reference("authors").optional(),
+      author: reference("contact").optional(),
       prepTime: z.number().optional(),
       servings: z.number().optional(),
       diet: z.string().optional(),
@@ -116,9 +116,9 @@ const terms = defineCollection({
 // Export collections
 export const collections = {
   about,
-  authors,
+  contact,
   home,
   portfolio,
-  recipes,
+  texturepacks,
   terms,
 };
