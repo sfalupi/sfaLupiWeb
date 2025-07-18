@@ -20,6 +20,7 @@ export type SocialLinks = {
   linkedIn?: string;
   pinterest?: string;
   tiktok?: string;
+  twitter?: string;
   website?: string;
   youtube?: string;
 };

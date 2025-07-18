@@ -35,7 +35,7 @@ const menu = [
 
 <header
   transition:persist
-  class={`container glass py-2 z-30 mb-4 lg:mt-4 lg:rounded-lg mobile-header ${stickyHeader && "sticky top-0"}`}
+  class={`container glass py-2 z-30 mb-4 lg:mt-4 lg:rounded-lg mobile-header header-lemon-milk ${stickyHeader && "sticky top-0"}`}
 >
   <nav class="relative flex flex-wrap items-center justify-between">
     <!-- navbar toggler -->
@@ -83,6 +83,26 @@ const menu = [
 </header>
 
 <style>
+  /* Apply Lemon Milk font specifically to header */
+  .header-lemon-milk {
+    font-family: "Sansation Bold", sans-serif;
+  }
+  
+  /* Apply Lemon Milk to all navigation links in header */
+  .header-lemon-milk nav a {
+    font-family: "Sansation Bold", sans-serif !important;
+  }
+  
+  /* Apply Lemon Milk to navigation menu items */
+  .header-lemon-milk #nav-menu li a {
+    font-family: "Sansation Bold", sans-serif !important;
+  }
+  
+  /* Apply Lemon Milk to mobile menu button */
+  .header-lemon-milk label {
+    font-family: "Sansation Bold", sans-serif !important;
+  }
+
   /* Mobile header adjustments */
   @media (max-width: 767px) {
     .mobile-header {

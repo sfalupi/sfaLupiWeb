@@ -135,6 +135,14 @@ const baseUrl = "https://janedoe.com";
         font-display: swap;
         font-weight: 700;
       }
+
+      @font-face {
+        font-display: swap;
+        font-family: "Sansation Bold";
+        font-style: normal;
+        font-weight: 700;
+        src: url("/fonts/Sansation-Bold.ttf") format("truetype");
+      }
       
       /* Apply Belleza to headings */
       h1, h2, h3, h4, h5, h6 {
@@ -149,6 +157,11 @@ const baseUrl = "https://janedoe.com";
       /* Apply Belleza to navigation and button text */
       nav a, button, .btn {
         font-family: "Belleza", serif;
+      }
+
+      /* Apply Lemon Milk font specifically to header */
+      .header-lemon-milk {
+        font-family: "Sansation Bold", sans-serif;
       }
       
       /* Apply Belleza to any text with font-weight 600 or higher */

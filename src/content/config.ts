@@ -20,6 +20,7 @@ const social = z.object({
   linkedIn: z.string().optional(),
   pinterest: z.string().optional(),
   tiktok: z.string().optional(),
+  twitter: z.string().optional(),
   website: z.string().optional(),
   youtube: z.string().optional(),
 });

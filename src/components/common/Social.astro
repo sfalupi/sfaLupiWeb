@@ -13,6 +13,7 @@ import {
   FaGlobe,
   FaYoutube,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 interface Props {
   links?: SocialLinks;
@@ -39,6 +40,34 @@ const iconClass =
           >
             <span class="sr-only">Discord</span>
             <FaDiscord className="w-6 h-6" />
+          </a>
+        </li>
+      )}
+      {links.twitter && (
+        <li class={liClass}>
+          <a
+            class={iconClass}
+            aria-label="X (Twitter)"
+            href={links.twitter}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+          >
+            <span class="sr-only">X (Twitter)</span>
+            <FaXTwitter className="w-6 h-6" />
+          </a>
+        </li>
+      )}
+      {links.youtube && (
+        <li class={liClass}>
+          <a
+            class={iconClass}
+            aria-label="YouTube"
+            href={links.youtube}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+          >
+            <span class="sr-only">YouTube</span>
+            <FaYoutube className="w-6 h-6" />
           </a>
         </li>
       )}
@@ -151,20 +180,6 @@ const iconClass =
           >
             <span class="sr-only">Website</span>
             <FaGlobe className="w-6 h-6" />
-          </a>
-        </li>
-      )}
-      {links.youtube && (
-        <li class={liClass}>
-          <a
-            class={iconClass}
-            aria-label="YouTube"
-            href={links.youtube}
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-          >
-            <span class="sr-only">YouTube</span>
-            <FaYoutube className="w-6 h-6" />
           </a>
         </li>
       )}
