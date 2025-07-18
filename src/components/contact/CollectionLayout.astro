@@ -2,7 +2,7 @@
 import type { AuthorsEntry } from "@/types";
 import BaseLayout from "@components/base/BaseLayout.astro";
 import PageHeader from "@components/common/PageHeader.astro";
-import AuthorCard from "@components/contact/Card.astro";
+import ContactCard from "@components/contact/Card.astro";
 
 interface Props {
   authorIndex: AuthorsEntry;
@@ -17,7 +17,7 @@ const { authorIndex, entries } = Astro.props;
   <section class="section-sm pb-0">
     <div class="container">
       <div class="row justify-center">
-        {entries.map((entry: AuthorsEntry) => <AuthorCard entry={entry} />)}
+        {entries.map((entry: AuthorsEntry) => <ContactCard entry={entry} />)}
       </div>
     </div>
   </section>

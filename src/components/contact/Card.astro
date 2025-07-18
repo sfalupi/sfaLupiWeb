@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, image, imageAlt, social } = entry.data;
+const { title, social } = entry.data;
 const bodyBrief: string | null = entry.body ? plainify(entry.body.slice(0, 100)) : null;
 ---
 
@@ -17,18 +17,6 @@ const bodyBrief: string | null = entry.body ? plainify(entry.body.slice(0, 100))
   <div
     class="glass rounded-lg p-4 text-center intersect:animate-fadeUp opacity-0"
   >
-    {
-      image && (
-        <Image
-          class="mx-auto mb-6 rounded"
-          src={image}
-          alt={imageAlt || "Author image"}
-          width={120}
-          height={120}
-          loading="eager"
-        />
-      )
-    }
     <h4 class="mb-3">
       {title}
     </h4>

@@ -1,4 +1,4 @@
 ---
-title: Contact
+title: Contacts
 description: this is meta description
 ---

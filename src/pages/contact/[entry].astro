@@ -4,7 +4,7 @@ import EntryLayout from "@components/contact/EntryLayout.astro";
 import { getEntries } from "@lib/contentParser";
 
 export async function getStaticPaths() {
-  const entries = (await getEntries("authors")) as AuthorsEntry[];
+  const entries = (await getEntries("contact")) as AuthorsEntry[];
   const paths = entries.map((entry) => ({
     params: {
       entry: entry.id,
