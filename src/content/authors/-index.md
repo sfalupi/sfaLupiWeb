@@ -1,4 +1,4 @@
 ---
-title: Authors
+title: Contact
 description: this is meta description
 ---

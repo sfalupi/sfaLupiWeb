@@ -1,7 +1,7 @@
 ---
-title: Creamy Mushroom Risotto
+title:  gsdfgsdfgsdfg
 description: A rich and comforting risotto made with earthy mushrooms and creamy Parmesan.
-image: "@assets/recipes/mushroom-risotto.jpg"
+image: "@assets/recipes/pack4.png"
 author: jane-doe
 prepTime: 45
 servings: 4
