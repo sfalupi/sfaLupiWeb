@@ -66,23 +66,6 @@ const home = defineCollection({
     }),
 });
 
-const portfolio = defineCollection({
-  loader: glob({
-    pattern: "-index.{md,mdx}",
-    base: "./src/content/portfolio",
-  }),
-  schema: searchable.extend({
-    projects: z.array(
-      z.object({
-        title: z.string(),
-        github: z.string().optional(),
-        technologies: z.array(z.string()).optional(),
-        content: z.array(z.string()).optional(),
-      }),
-    ),
-  }),
-});
-
 const texturepacks = defineCollection({
   loader: glob({
     pattern: "**\/[^_]*.{md,mdx}",
@@ -94,6 +77,33 @@ const texturepacks = defineCollection({
       image: image().optional(),
       imageAlt: z.string().default(""),
       author: reference("contact").optional(),
+      downloadLink: z.string().url().optional(), // Add this new field
+      prepTime: z.number().optional(),
+      servings: z.number().optional(),
+      diet: z.string().optional(),
+      ingredients: z
+        .object({
+          list: z.array(z.string()),
+          qty: z.array(z.string()),
+        })
+        .optional(),
+      instructions: z.array(z.string()).optional(),
+      notes: z.array(z.string()).optional(),
+    }),
+});
+
+const pixelarts = defineCollection({
+  loader: glob({
+    pattern: "**\/[^_]*.{md,mdx}",
+    base: "./src/content/pixelarts",
+  }),
+  schema: ({ image }) =>
+    searchable.extend({
+      date: z.date().optional(),
+      image: image().optional(),
+      imageAlt: z.string().default(""),
+      author: reference("contact").optional(),
+      downloadLink: z.string().url().optional(), // Add this new field
       prepTime: z.number().optional(),
       servings: z.number().optional(),
       diet: z.string().optional(),
@@ -118,7 +128,7 @@ export const collections = {
   about,
   contact,
   home,
-  portfolio,
   texturepacks,
   terms,
+  pixelarts
 };

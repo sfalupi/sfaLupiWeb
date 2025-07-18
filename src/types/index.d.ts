@@ -6,9 +6,9 @@ export type GenericEntry = CollectionEntry<CollectionKey>;
 export type AboutEntry = CollectionEntry<"about">;
 export type AuthorsEntry = CollectionEntry<"contact">;
 export type HomeEntry = CollectionEntry<"home">;
-export type PortfolioEntry = CollectionEntry<"portfolio">;
 export type RecipesEntry = CollectionEntry<"texturepacks">;
 export type TermsEntry = CollectionEntry<"terms">;
+export type PixelArtsEntry = CollectionEntry<"pixelarts">
 
 export type SocialLinks = {
   discord?: string;

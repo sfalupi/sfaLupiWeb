@@ -1,7 +1,7 @@
 ---
 title:  Rosae 16x
 description: A simple, authentic Italian-style pizza with fresh ingredients and a perfect crispy crust.
-image: "@assets/texturepacks/pack3.png"
+image: "@assets/pixelarts/pack3.png"
 downloadLink: https://www.youtube.com/watch?v=Nq1wM28YNmA&t=2s
 author: jane-doe
 prepTime: 60

@@ -1,16 +1,16 @@
 ---
 import { Image } from "astro:assets";
-import type { RecipesEntry } from "@/types";
+import type { PixelArtsEntry } from "@/types";
 
 interface Props {
-  entry: RecipesEntry;
+  entry: PixelArtsEntry;
 }
 
 const { entry } = Astro.props;
 const { title, image, imageAlt, downloadLink } = entry.data;
 
 // Determine the link - use downloadLink if available, otherwise fallback to internal route
-const linkUrl = downloadLink || `/texturepacks/${entry.id}`;
+const linkUrl = downloadLink || `/pixelarts/${entry.id}`;
 const isExternalLink = !!downloadLink;
 ---
 

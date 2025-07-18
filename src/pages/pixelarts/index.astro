@@ -1,0 +1,25 @@
+---
+import CollectionLayout from "@components/pixelarts/CollectionLayout.astro";
+import { getIndex, getEntries } from "@lib/contentParser";
+import { sortByDate } from "@lib/sortFunctions";
+import type { PixelArtsEntry } from "@/types";
+
+const entryIndex = (await getIndex("pixelarts")) as PixelArtsEntry;
+const entries = (await getEntries("pixelarts", sortByDate)) as PixelArtsEntry[];
+
+const { slug } = Astro.params;
+
+const entriesPerPage = 6;
+const currentPageIndex = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
+const pageCount = Math.ceil(entries.length / entriesPerPage);
+const indexOfLastEntry = currentPageIndex * entriesPerPage;
+const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
+const currentEntries = entries.slice(indexOfFirstEntry, indexOfLastEntry);
+---
+
+<CollectionLayout
+  entryIndex={entryIndex}
+  entries={currentEntries}
+  pageIndex={currentPageIndex}
+  pageCount={pageCount}
+/>
