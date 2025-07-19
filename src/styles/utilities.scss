@@ -2,16 +2,16 @@
 
 // Belleza Font Utilities
 .font-belleza {
-  font-family: 'Belleza', serif !important;
+  font-family: 'Archivo Light', serif !important;
 }
 
 .font-belleza-bold {
-  font-family: 'Belleza', serif !important;
+  font-family: 'Archivo Light', serif !important;
   font-weight: 700 !important;
 }
 
 .font-belleza-semibold {
-  font-family: 'Belleza', serif !important;
+  font-family: 'Archivo Light', serif !important;
   font-weight: 600 !important;
 }
 
@@ -20,32 +20,32 @@
   &.font-bold,
   &.font-semibold,
   &.font-medium {
-    font-family: 'Belleza', serif !important;
+    font-family: 'Archivo Light', serif !important;
   }
 }
 
 // Navigation specific styling
 nav {
   a, button {
-    font-family: 'Belleza', serif;
+    font-family: 'Archivo Light', serif;
     
     &.font-semibold,
     &.font-bold {
-      font-family: 'Belleza', serif !important;
+      font-family: 'Archivo Light', serif !important;
     }
   }
 }
 
 // Button styling
 button, .btn {
-  font-family: 'Belleza', serif;
+  font-family: 'Archivo Light', serif;
 }
 
 // Form labels and important text
 label, .label {
   &.font-semibold,
   &.font-bold {
-    font-family: 'Belleza', serif !important;
+    font-family: 'Archivo Light', serif !important;
   }
 }
 
@@ -53,14 +53,14 @@ label, .label {
 .card-title,
 .title,
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Belleza', serif !important;
+  font-family: 'Archivo Light', serif !important;
 }
 
 // Override any Tailwind font utilities that might conflict
 .font-sans {
   &.font-bold,
   &.font-semibold {
-    font-family: 'Belleza', serif !important;
+    font-family: 'Archivo Light', serif !important;
   }
 }
 

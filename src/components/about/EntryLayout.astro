@@ -40,19 +40,7 @@ const safeDescription = description || "";
 const safeImageAlt = imageAlt || "About image";
 ---
 
-<style>
-  @font-face {
-  font-display: swap;
-  font-family: "Archivo Light";
-  font-style: normal;
-  font-weight: 700;
-  src: url("/fonts/Archivo-Light.ttf") format("truetype");
 
-  .title-font{
-    font-family: "Archivo Light";
-  }
-}
-</style>
 
 <BaseLayout title={safeTitle} description={safeDescription} image={image?.src}>
   <section class="section-sm">
