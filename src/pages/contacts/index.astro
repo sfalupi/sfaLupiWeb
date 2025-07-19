@@ -3,10 +3,10 @@ import type { AuthorsEntry } from "@/types";
 import CollectionLayout from "@components/contacts/CollectionLayout.astro";
 import { getEntries } from "@lib/contentParser";
 import { getIndex } from "@lib/contentParser";
-import { sortByTitle } from "@lib/sortFunctions";
+import { sortByOrder } from "@lib/sortFunctions";
 
 const authorIndex = (await getIndex("contacts")) as AuthorsEntry;
-const entries = (await getEntries("contacts", sortByTitle)) as AuthorsEntry[];
+const entries = (await getEntries("contacts", sortByOrder)) as AuthorsEntry[];
 ---
 
 <CollectionLayout authorIndex={authorIndex} entries={entries} />

@@ -11,13 +11,25 @@ const { title, image, imageAlt } = entry.data;
 // Get the raw image src (bypassing Astro's image optimization)
 const imageSrc = image ? image.src : null;
 ---
+<style>
+  @font-face {
+  font-display: swap;
+  font-family: "Archivo Light";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/Archivo-Light.ttf") format("truetype");
 
+  .title-font{
+    font-family: "Archivo Light";
+  }
+}
+</style>
 <div class="m-2 intersect:animate-fadeUp opacity-0">
   <div 
-    class="hover:opacity-90 block cursor-default" 
+    class="hover:opacity-90 block cursor-default title-font" 
     title={title}
   >
-    <div class="relative rounded-lg overflow-hidden flex items-center justify-center">
+    <div class="relative rounded-lg overflow-hidden flex items-center justify-center title-font">
       {
         imageSrc && (
           <img

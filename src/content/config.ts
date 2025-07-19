@@ -42,6 +42,7 @@ const contacts = defineCollection({
   schema: ({ image }) =>
     searchable.extend({
       email: z.string().optional(),
+      order: z.number().optional(),
       image: image().optional(),
       imageAlt: z.string().default(""),
       social: social.optional(),

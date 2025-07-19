@@ -1,25 +1,7 @@
-/* Belleza Regular */
 @font-face {
   font-display: swap;
-  font-family: "Belleza";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/fonts/Belleza-Regular.ttf") format("truetype");
-}
-
-/* Belleza Bold (using the same file but with bold weight) */
-@font-face {
-  font-display: swap;
-  font-family: "Belleza";
+  font-family: "Archivo Light";
   font-style: normal;
   font-weight: 700;
-  src: url("/fonts/Belleza-Regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Sansation Bold";
-  font-style: normal;
-  font-weight: 700;
-  src: url("/fonts/Sansation-Bold.ttf") format("truetype");
+  src: url("/fonts/Archivo-Light.ttf") format("truetype");
 }

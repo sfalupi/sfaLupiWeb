@@ -10,9 +10,9 @@ let h3 = h4 * font_scale;
 let h2 = h3 * font_scale;
 let h1 = h2 * font_scale;
 
-let fontPrimary = "Belleza";
-let fontPrimaryType = "serif";
-let fontSecondary = "open sans";
+let fontPrimary = "Archivo Light";
+let fontPrimaryType = "sans-serif";
+let fontSecondary = "Archivo Light";
 let fontSecondaryType = "sans-serif";
 
 fontPrimary = fontPrimary
@@ -88,7 +88,7 @@ module.exports = {
       fontFamily: {
         primary: [fontPrimary, fontPrimaryType],
         secondary: [fontSecondary, fontSecondaryType],
-        belleza: ["Belleza", "serif"],
+        archivo: ["Archivo Light", "Archivo Light"]
       },
       spacing: {
         "1/2": "50%",
