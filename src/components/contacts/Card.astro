@@ -12,7 +12,11 @@ const { entry } = Astro.props;
 const { title, social } = entry.data;
 const bodyBrief: string | null = entry.body ? plainify(entry.body.slice(0, 100)) : null;
 ---
-
+<style>
+  .title-size{
+    font-size: 1.3rem;
+  }
+</style>
 <div class="mb-14 md:col-6 lg:col-4">
   <div
     class="glass rounded-lg p-4 text-center intersect:animate-fadeUp opacity-0"
@@ -20,7 +24,7 @@ const bodyBrief: string | null = entry.body ? plainify(entry.body.slice(0, 100))
     <h4 class="mb-3">
       {title}
     </h4>
-    {bodyBrief && <p class="mb-4">{bodyBrief}</p>}
+    {bodyBrief && <p class="mb-4 title-size">{bodyBrief}</p>} 
     <Social links={social} />
   </div>
 </div>

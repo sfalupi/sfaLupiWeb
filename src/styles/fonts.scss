@@ -5,3 +5,27 @@
   font-weight: 700;
   src: url("/fonts/Archivo-Light.ttf") format("truetype");
 }
+
+@font-face {
+  font-display: swap;
+  font-family: "Archivo Medium";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/Archivo-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Archivo SemiBold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/Archivo-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/Archivo-Regular.ttf") format("truetype");
+}
