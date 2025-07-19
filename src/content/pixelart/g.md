@@ -1,8 +1,8 @@
 ---
-title:  h
-order: 8
+title:  Sword Tree Day
+order: 7
 description: A hearty, warming chili packed with sweet potatoes, black beans, and spices, perfect for a cozy meal.
-image: "@assets/pixelarts/swordnight.png"
+image: "@assets/pixelarts/sword.png"
 downloadLink: https://www.youtube.com/watch?v=C9kpK56BHyQ&t=4s
 author: jane-doe
 prepTime: 45

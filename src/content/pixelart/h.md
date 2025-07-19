@@ -1,8 +1,8 @@
 ---
-title:  g
-order: 7
+title:  Sword Tree Night
+order: 8
 description: A hearty, warming chili packed with sweet potatoes, black beans, and spices, perfect for a cozy meal.
-image: "@assets/pixelarts/sword.png"
+image: "@assets/pixelarts/swordnight.png"
 downloadLink: https://www.youtube.com/watch?v=C9kpK56BHyQ&t=4s
 author: jane-doe
 prepTime: 45

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@components/base/BaseLayout.astro";
-import RecipeCard from "@components/pixelarts/Card.astro";
+import RecipeCard from "@components/pixelart/Card.astro";
 import Pagination from "@components/common/Pagination.astro";
 import PageHeader from "@components/common/PageHeader.astro";
 import type { PixelArtsEntry } from "@/types";
@@ -33,7 +33,7 @@ const { entryIndex, entries, pageIndex, pageCount }: Props = Astro.props;
         }
       </div>
       <Pagination
-        collection="pixelarts"
+        collection="pixelart"
         pageIndex={pageIndex}
         pageCount={pageCount}
       />

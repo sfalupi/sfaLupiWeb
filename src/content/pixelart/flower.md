@@ -1,5 +1,5 @@
 ---
-title: k
+title: Lupi Banner
 description: A moist, flavorful banana bread made with overripe bananas, perfect for breakfast or a snack.
 image: "@assets/pixelarts/flower.png"
 downloadLink: https://www.youtube.com/watch?v=rkogbQI_bn8

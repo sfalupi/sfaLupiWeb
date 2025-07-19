@@ -1,8 +1,8 @@
 ---
-title:  i
-order: 9
+title:  Planet
+order: 2
 description: A hearty, warming chili packed with sweet potatoes, black beans, and spices, perfect for a cozy meal.
-image: "@assets/pixelarts/swordskyday.png"
+image: "@assets/pixelarts/soth.png"
 downloadLink: https://www.youtube.com/watch?v=C9kpK56BHyQ&t=4s
 author: jane-doe
 prepTime: 45

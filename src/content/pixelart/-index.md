@@ -1,4 +1,4 @@
 ---
-title: Pixel Arts
+title: Pixel Art
 description: A modest recipe book.
 ---

@@ -1,8 +1,8 @@
 ---
-title:  b
-order: 2
+title:  Sword Sky Night
+order: 10
 description: A hearty, warming chili packed with sweet potatoes, black beans, and spices, perfect for a cozy meal.
-image: "@assets/pixelarts/soth.png"
+image: "@assets/pixelarts/swordskynight.png"
 downloadLink: https://www.youtube.com/watch?v=C9kpK56BHyQ&t=4s
 author: jane-doe
 prepTime: 45

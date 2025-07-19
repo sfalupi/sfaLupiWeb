@@ -1,5 +1,5 @@
 ---
-title:  e
+title:  Cloud Pink
 order: 5
 description: A rich and comforting risotto made with earthy mushrooms and creamy Parmesan.
 image: "@assets/pixelarts/sky.png"

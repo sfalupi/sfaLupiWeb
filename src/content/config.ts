@@ -93,10 +93,10 @@ const texturepacks = defineCollection({
     }),
 });
 
-const pixelarts = defineCollection({
+const pixelart = defineCollection({
   loader: glob({
     pattern: "**\/[^_]*.{md,mdx}",
-    base: "./src/content/pixelarts",
+    base: "./src/content/pixelart",
   }),
   schema: ({ image }) =>
     searchable.extend({
@@ -159,6 +159,6 @@ export const collections = {
   home,
   texturepacks,
   terms,
-  pixelarts,
+  pixelart,
   commissions
 };

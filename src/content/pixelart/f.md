@@ -1,5 +1,5 @@
 ---
-title:  f
+title:  Cloud Purple
 order: 6
 description: A classic Italian pasta dish featuring creamy eggs, crispy pancetta, and sharp Pecorino cheese.
 image: "@assets/pixelarts/sky3.png"

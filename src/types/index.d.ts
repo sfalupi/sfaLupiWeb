@@ -8,7 +8,7 @@ export type AuthorsEntry = CollectionEntry<"contacts">;
 export type HomeEntry = CollectionEntry<"home">;
 export type RecipesEntry = CollectionEntry<"texturepacks">;
 export type TermsEntry = CollectionEntry<"terms">;
-export type PixelArtsEntry = CollectionEntry<"pixelarts">
+export type PixelArtsEntry = CollectionEntry<"pixelart">
 export type CommissionsEntry = CollectionEntry<"commissions">
 
 export type SocialLinks = {

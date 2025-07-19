@@ -1,12 +1,12 @@
 ---
 import type { PixelArtsEntry } from "@/types";
-import EntryLayout from "@components/pixelarts/EntryLayout.astro";
+import EntryLayout from "@components/pixelart/EntryLayout.astro";
 import { getEntries } from "@lib/contentParser";
 import { sortByTitle } from "@lib/sortFunctions";
 
 export async function getStaticPaths() {
   try {
-    const entries = await getEntries("pixelarts", sortByTitle) as PixelArtsEntry[];
+    const entries = await getEntries("pixelart", sortByTitle) as PixelArtsEntry[];
     
     if (!entries || entries.length === 0) {
       console.warn('No recipe entries found');
@@ -38,7 +38,7 @@ const { entry } = Astro.props;
 
 // Additional safety check
 if (!entry) {
-  return Astro.redirect('/pixelarts');
+  return Astro.redirect('/pixelart');
 }
 ---
 

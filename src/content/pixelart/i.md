@@ -1,7 +1,8 @@
 ---
-title:  l
+title:  Sword Sky Day
+order: 9
 description: A hearty, warming chili packed with sweet potatoes, black beans, and spices, perfect for a cozy meal.
-image: "@assets/pixelarts/skycyanups.png"
+image: "@assets/pixelarts/swordskyday.png"
 downloadLink: https://www.youtube.com/watch?v=C9kpK56BHyQ&t=4s
 author: jane-doe
 prepTime: 45

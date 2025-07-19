@@ -1,5 +1,5 @@
 ---
-title:  c
+title:  Blue Wallpaper
 order: 3
 description: A juicy roasted chicken infused with zesty lemon and fragrant herbs, perfect for a family dinner.
 image: "@assets/pixelarts/kippu.png"

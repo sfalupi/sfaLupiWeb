@@ -1,5 +1,5 @@
 ---
-title:  d
+title:  Looshy Art
 order: 4
 description: A simple, authentic Italian-style pizza with fresh ingredients and a perfect crispy crust.
 image: "@assets/pixelarts/looshyfanart.png"
