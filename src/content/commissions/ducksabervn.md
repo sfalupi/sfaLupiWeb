@@ -8,7 +8,7 @@ author: jane-doe
 prepTime: 15
 cook_time: 60
 servings: 8
-order: 3
+order: 4
 diet: Vegetarian
 
 ingredients:

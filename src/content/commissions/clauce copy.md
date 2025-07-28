@@ -1,12 +1,12 @@
 ---
 title:  Banner for @claucefx
 description: A simple, authentic Italian-style pizza with fresh ingredients and a perfect crispy crust.
-image: "@assets/commissions/image.png"
+image: "@assets/commissions/clauce.png"
 downloadLink: https://www.youtube.com/watch?v=Nq1wM28YNmA&t=2s
 author: jane-doe
 prepTime: 60
 servings: 2
-order: 5
+order: 3
 diet: Vegetarian
 
 ingredients:
