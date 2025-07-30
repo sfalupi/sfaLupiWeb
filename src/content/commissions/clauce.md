@@ -6,7 +6,7 @@ downloadLink: https://www.youtube.com/watch?v=Nq1wM28YNmA&t=2s
 author: jane-doe
 prepTime: 60
 servings: 2
-order: 5
+order: 6
 diet: Vegetarian
 
 ingredients:
