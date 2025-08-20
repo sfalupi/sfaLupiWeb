@@ -30,7 +30,8 @@ interface ProfileCardProps {
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
-  const [expandedSections, setExpandedSections] = useState<string[]>(['about']);
+  // Set first available section as default (since we removed "about")
+  const [expandedSections, setExpandedSections] = useState<string[]>([tabsData[0]?.id || 'weapons-and-tools']);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImages, setCurrentImages] = useState<any[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -108,11 +109,13 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
   };
 
   const renderSectionContent = (section: TabData) => {
+    // Only handle model type sections now (no more about section)
     if (section.content === 'weapons-and-tools' || 
         section.content === 'items' || 
         section.content === 'mobs' ||
         section.content === 'blocks' ||
-        section.content === 'miscellaneous') {
+        section.content === 'miscellaneous' ||
+        section.content === 'commissions') {
       
       if (!section.models || section.models.length === 0) {
         return (
@@ -199,10 +202,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
       );
     }
 
-    // Default content for About section
+    // If somehow an unknown section type is passed, return empty
     return (
-      <div className="text-txt-s dark:text-darkmode-txt-s leading-relaxed pt-4 text-center">
-        <p>{section.content}</p>
+      <div className="text-center py-4">
+        <p className="text-txt-s dark:text-darkmode-txt-s">Content not available.</p>
       </div>
     );
   };
@@ -276,43 +279,45 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
             </button>
 
             {/* Main Image Container */}
-            <div className="relative flex items-center justify-center w-full">
-              {/* Left Arrow - Outside Image */}
-              {currentImages.length > 1 && (
-                <button
-                  onClick={prevImage}
-                  className="absolute -left-16 top-1/2 transform -translate-y-1/2 text-white bg-gray-800 hover:bg-gray-700 rounded-full p-4 transition-all shadow-lg"
-                  title="Previous (←)"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-              )}
-
+            <div className="relative flex items-center justify-center w-full max-w-6xl">
               {/* Image */}
               {currentImages[currentImageIndex] && (
-                <img
-                  src={currentImages[currentImageIndex].src}
-                  alt="Model preview"
-                  className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl"
-                  style={{
-                    imageRendering: 'pixelated',
-                  }}
-                />
-              )}
+                <div className="relative">
+                  <img
+                    src={currentImages[currentImageIndex].src}
+                    alt="Model preview"
+                    className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl"
+                    style={{
+                      imageRendering: 'pixelated',
+                    }}
+                  />
+                  
+                  {/* Left Arrow - Inside Image */}
+                  {currentImages.length > 1 && (
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-3 transition-all shadow-lg z-10"
+                      title="Previous (←)"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                  )}
 
-              {/* Right Arrow - Outside Image */}
-              {currentImages.length > 1 && (
-                <button
-                  onClick={nextImage}
-                  className="absolute -right-16 top-1/2 transform -translate-y-1/2 text-white bg-gray-800 hover:bg-gray-700 rounded-full p-4 transition-all shadow-lg"
-                  title="Next (→)"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
+                  {/* Right Arrow - Inside Image */}
+                  {currentImages.length > 1 && (
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-3 transition-all shadow-lg z-10"
+                      title="Next (→)"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
               )}
             </div>
 

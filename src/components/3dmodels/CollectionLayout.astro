@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@components/base/BaseLayout.astro";
 import ProfileCard from "@components/3dmodels/ProfileCard.tsx";
+import PageHeader from "@components/common/PageHeader.astro";
 import type { Models3DEntry } from "@/types";
 
 interface Props {
@@ -11,24 +12,20 @@ interface Props {
 const { entryIndex, entries } = Astro.props;
 
 // Group models by new categories
+const commissions = entries.filter(entry => entry.data.modelType === "commissions");
 const weaponsAndToolsModels = entries.filter(entry => entry.data.modelType === "weapons-and-tools");
 const itemsModels = entries.filter(entry => entry.data.modelType === "items");
 const mobsModels = entries.filter(entry => entry.data.modelType === "mobs");
 const blocksModels = entries.filter(entry => entry.data.modelType === "blocks");
 const miscellaneousModels = entries.filter(entry => entry.data.modelType === "miscellaneous" || 
   !entry.data.modelType || 
-  !["weapons-and-tools", "items", "mobs", "blocks"].includes(entry.data.modelType));
+  !["weapons-and-tools", "items", "mobs", "blocks", "commissions"].includes(entry.data.modelType));
 
-// Create new tabs data
+// Create tabs data WITHOUT the about section
 const tabsData = [
   {
-    id: "about",
-    label: "About",
-    content: entryIndex.data.description || "3D modeling portfolio showcasing various projects and techniques."
-  },
-  {
     id: "weapons-and-tools",
-    label: "Weapons & Tools", 
+    label: "Weapons & Equipment", 
     content: "weapons-and-tools",
     models: weaponsAndToolsModels
   },
@@ -51,6 +48,12 @@ const tabsData = [
     models: blocksModels
   },
   {
+    id: "commissions", 
+    label: "Commissions",
+    content: "commissions",
+    models: commissions
+  },
+  {
     id: "miscellaneous",
     label: "Miscellaneous",
     content: "miscellaneous",
@@ -60,6 +63,18 @@ const tabsData = [
 ---
 
 <BaseLayout title={entryIndex.data.title} description={entryIndex.data.description}>
+  <!-- Header card like Commissions page with custom text -->
+  <section class="flex justify-center">
+    <div class="container text-center m-2">
+      <div class="rounded-lg p-0 bg-gradient-to-t gradient">
+        <div class="rounded-lg glass px-8 py-6 intersect:animate-fadeDown opacity-0 intersect-no-queue">
+          <h1 class="text-h1-sm md:text-h1 font-primary font-normal mb-4">3D Models</h1>
+          <p class="text-2xl font-normal text-txt-s dark:text-darkmode-txt-s">My 3D Models/Project using Blockbench</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section py-8 min-h-[60vh] flex items-center justify-center">
     <div class="container max-w-6xl">
       <div class="flex justify-center">
@@ -82,9 +97,3 @@ const tabsData = [
     }
   }
 </style>
-
-<!-- if (section.content === 'weapons-and-tools' || 
-        section.content === 'items' || 
-        section.content === 'mobs' ||
-        section.content === 'blocks' ||
-        section.content === 'miscellaneous') { -->
