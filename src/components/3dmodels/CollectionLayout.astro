@@ -10,15 +10,16 @@ interface Props {
 
 const { entryIndex, entries } = Astro.props;
 
-// Group models by category/type
-const characterModels = entries.filter(entry => entry.data.modelType === "character");
-const environmentModels = entries.filter(entry => entry.data.modelType === "environment");
-const propModels = entries.filter(entry => entry.data.modelType === "prop");
-const vehicleModels = entries.filter(entry => entry.data.modelType === "vehicle");
-const otherModels = entries.filter(entry => !entry.data.modelType || 
-  !["character", "environment", "prop", "vehicle"].includes(entry.data.modelType));
+// Group models by new categories
+const weaponsAndToolsModels = entries.filter(entry => entry.data.modelType === "weapons-and-tools");
+const itemsModels = entries.filter(entry => entry.data.modelType === "items");
+const mobsModels = entries.filter(entry => entry.data.modelType === "mobs");
+const blocksModels = entries.filter(entry => entry.data.modelType === "blocks");
+const miscellaneousModels = entries.filter(entry => entry.data.modelType === "miscellaneous" || 
+  !entry.data.modelType || 
+  !["weapons-and-tools", "items", "mobs", "blocks"].includes(entry.data.modelType));
 
-// Create tabs data
+// Create new tabs data
 const tabsData = [
   {
     id: "about",
@@ -26,34 +27,34 @@ const tabsData = [
     content: entryIndex.data.description || "3D modeling portfolio showcasing various projects and techniques."
   },
   {
-    id: "characters",
-    label: "Characters", 
-    content: "character-models",
-    models: characterModels
+    id: "weapons-and-tools",
+    label: "Weapons & Tools", 
+    content: "weapons-and-tools",
+    models: weaponsAndToolsModels
   },
   {
-    id: "environments",
-    label: "Environments",
-    content: "environment-models", 
-    models: environmentModels
+    id: "items",
+    label: "Items",
+    content: "items", 
+    models: itemsModels
   },
   {
-    id: "props",
-    label: "Props",
-    content: "prop-models",
-    models: propModels
+    id: "mobs",
+    label: "Mobs",
+    content: "mobs",
+    models: mobsModels
   },
   {
-    id: "vehicles", 
-    label: "Vehicles",
-    content: "vehicle-models",
-    models: vehicleModels
+    id: "blocks", 
+    label: "Blocks",
+    content: "blocks",
+    models: blocksModels
   },
   {
-    id: "others",
-    label: "Others",
-    content: "other-models",
-    models: otherModels
+    id: "miscellaneous",
+    label: "Miscellaneous",
+    content: "miscellaneous",
+    models: miscellaneousModels
   }
 ];
 ---
@@ -81,3 +82,9 @@ const tabsData = [
     }
   }
 </style>
+
+<!-- if (section.content === 'weapons-and-tools' || 
+        section.content === 'items' || 
+        section.content === 'mobs' ||
+        section.content === 'blocks' ||
+        section.content === 'miscellaneous') { -->

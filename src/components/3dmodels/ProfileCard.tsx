@@ -108,11 +108,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
   };
 
   const renderSectionContent = (section: TabData) => {
-    if (section.content === 'character-models' || 
-        section.content === 'environment-models' || 
-        section.content === 'prop-models' ||
-        section.content === 'vehicle-models' ||
-        section.content === 'other-models') {
+    if (section.content === 'weapons-and-tools' || 
+        section.content === 'items' || 
+        section.content === 'mobs' ||
+        section.content === 'blocks' ||
+        section.content === 'miscellaneous') {
       
       if (!section.models || section.models.length === 0) {
         return (
@@ -122,67 +122,76 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
         );
       }
 
-      // Commission-style layout: single column, large cards
       return (
-        <div className="space-y-6 pt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
           {section.models.map((model) => (
-            <div key={model.id} className="glass-t rounded-lg border border-border dark:border-darkmode-border overflow-hidden hover:opacity-90 transition-opacity">
-              <div 
-                className="cursor-pointer"
-                onClick={() => openLightbox(model)}
-              >
-                <div className="aspect-video w-full bg-bg-t dark:bg-darkmode-bg-t overflow-hidden">
-                  {model.data.image && (
-                    <img 
-                      src={model.data.image.src} 
-                      alt={model.data.imageAlt || model.data.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  )}
-                </div>
-                <div className="p-4 text-center">
-                  <h3 className="text-xl font-semibold text-txt-p dark:text-darkmode-txt-p mb-2">
-                    {model.data.title}
-                  </h3>
-                  <div className="text-sm text-txt-s dark:text-darkmode-txt-s space-y-1">
-                    {model.data.software && (
-                      <p><span className="font-medium">Software:</span> {model.data.software}</p>
-                    )}
-                    {model.data.polyCount && (
-                      <p><span className="font-medium">Polygons:</span> {model.data.polyCount.toLocaleString()}</p>
-                    )}
-                    <div className="flex flex-wrap gap-2 justify-center mt-2">
-                      {model.data.textures && (
-                        <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded text-xs">
-                          Textured
-                        </span>
-                      )}
-                      {model.data.rigged && (
-                        <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded text-xs">
-                          Rigged
-                        </span>
-                      )}
-                      {model.data.animated && (
-                        <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded text-xs">
-                          Animated
-                        </span>
-                      )}
+            <div key={model.id} className="glass-t rounded-lg p-4 hover:opacity-90 transition-opacity border border-border dark:border-darkmode-border">
+              {model.data.image && (
+                <div 
+                  className="aspect-square mb-3 rounded-lg overflow-hidden bg-bg-t dark:bg-darkmode-bg-t cursor-pointer relative group"
+                  onClick={() => openLightbox(model)}
+                >
+                  <img 
+                    src={model.data.image.src} 
+                    alt={model.data.imageAlt || model.data.title}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                  {/* Click to view indicator */}
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-70 rounded-full p-2">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
                     </div>
-                    {model.data.downloadLink && (
-                      <div className="mt-3">
-                        <a 
-                          href={model.data.downloadLink} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="inline-block px-4 py-2 bg-txt-p dark:bg-darkmode-txt-p text-bg-p dark:text-darkmode-bg-p rounded hover:opacity-80 transition-opacity"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          Download
-                        </a>
-                      </div>
-                    )}
                   </div>
                 </div>
+              )}
+              <h3 className="font-semibold text-txt-p dark:text-darkmode-txt-p mb-2 text-lg text-center">
+                {model.data.title}
+              </h3>
+              <div className="space-y-1 text-sm text-txt-s dark:text-darkmode-txt-s text-center">
+                {model.data.software && (
+                  <p><span className="font-medium">Software:</span> {model.data.software}</p>
+                )}
+                {model.data.polyCount && (
+                  <p><span className="font-medium">Polygons:</span> {model.data.polyCount.toLocaleString()}</p>
+                )}
+                <div className="flex flex-wrap gap-2 mt-2 justify-center">
+                  {model.data.textures && (
+                    <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded text-xs">
+                      Textured
+                    </span>
+                  )}
+                  {model.data.rigged && (
+                    <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded text-xs">
+                      Rigged
+                    </span>
+                  )}
+                  {model.data.animated && (
+                    <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded text-xs">
+                      Animated
+                    </span>
+                  )}
+                </div>
+                {model.data.formats && model.data.formats.length > 0 && (
+                  <p className="mt-2">
+                    <span className="font-medium">Formats:</span> {model.data.formats.join(', ')}
+                  </p>
+                )}
+                {model.data.downloadLink && (
+                  <div className="mt-2 text-center">
+                    <a 
+                      href={model.data.downloadLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-block px-3 py-1 bg-txt-p dark:bg-darkmode-txt-p text-bg-p dark:text-darkmode-bg-p rounded text-sm hover:opacity-80 transition-opacity"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Download
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -192,7 +201,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
 
     // Default content for About section
     return (
-      <div className="text-txt-s dark:text-darkmode-txt-s leading-relaxed pt-4">
+      <div className="text-txt-s dark:text-darkmode-txt-s leading-relaxed pt-4 text-center">
         <p>{section.content}</p>
       </div>
     );
@@ -201,7 +210,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
   return (
     <>
       <div className="w-full max-w-4xl mx-4">
-        <div className="glass rounded-lg p-6 md:p-8 max-h-[80vh] overflow-y-auto">
+        <div className="glass rounded-lg p-6 md:p-8">
           <div className="space-y-4">
             {tabsData.map((section) => {
               const isExpanded = expandedSections.includes(section.id);
@@ -230,11 +239,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
                     </svg>
                   </button>
 
-                  {/* Section Content */}
+                  {/* Section Content - No height restrictions */}
                   <div className={`overflow-hidden transition-all duration-300 ${
-                    isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                    isExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
                   }`}>
-                    <div className="pb-6 max-h-[450px] overflow-y-auto">
+                    <div className="pb-6">
                       {renderSectionContent(section)}
                     </div>
                   </div>
@@ -248,7 +257,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
       {/* Lightbox Modal */}
       {lightboxOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-8"
+          className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-8"
           onClick={closeLightbox}
         >
           <div 
