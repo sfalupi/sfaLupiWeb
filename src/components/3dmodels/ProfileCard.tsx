@@ -114,9 +114,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
         section.content === 'items' || 
         section.content === 'mobs' ||
         section.content === 'blocks' ||
-        section.content === 'miscellaneous' ||
+        section.content === 'miscellaneous'||
         section.content === 'commissions') {
-      
       if (!section.models || section.models.length === 0) {
         return (
           <div className="text-center py-4">
@@ -213,7 +212,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
   return (
     <>
       <div className="w-full max-w-4xl mx-4">
-        <div className="glass rounded-lg p-6 md:p-8">
+        <div className="glass rounded-lg p-6 md:p-8 min-h-0">
           <div className="space-y-4">
             {tabsData.map((section) => {
               const isExpanded = expandedSections.includes(section.id);
@@ -242,9 +241,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
                     </svg>
                   </button>
 
-                  {/* Section Content - No height restrictions */}
+                  {/* Section Content - Remove height restrictions */}
                   <div className={`overflow-hidden transition-all duration-300 ${
-                    isExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+                    isExpanded ? 'max-h-none opacity-100' : 'max-h-0 opacity-0'
                   }`}>
                     <div className="pb-6">
                       {renderSectionContent(section)}
