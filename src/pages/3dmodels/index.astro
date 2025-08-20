@@ -1,0 +1,11 @@
+---
+import CollectionLayout from "@components/3dmodels/CollectionLayout.astro";
+import { getIndex, getEntries } from "@lib/contentParser";
+import { sortByOrder } from "@lib/sortFunctions";
+import type { Models3DEntry } from "@/types";
+
+const entryIndex = (await getIndex("3dmodels")) as Models3DEntry;
+const entries = (await getEntries("3dmodels", sortByOrder)) as Models3DEntry[];
+---
+
+<CollectionLayout entryIndex={entryIndex} entries={entries} />

@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@components/base/BaseLayout.astro";
+import ProfileCard from "@components/3dmodels/ProfileCard.tsx";
+import type { Models3DEntry } from "@/types";
+
+interface Props {
+  entryIndex: Models3DEntry;
+  entries: Models3DEntry[];
+}
+
+const { entryIndex, entries } = Astro.props;
+
+// Group models by category/type
+const characterModels = entries.filter(entry => entry.data.modelType === "character");
+const environmentModels = entries.filter(entry => entry.data.modelType === "environment");
+const propModels = entries.filter(entry => entry.data.modelType === "prop");
+const vehicleModels = entries.filter(entry => entry.data.modelType === "vehicle");
+const otherModels = entries.filter(entry => !entry.data.modelType || 
+  !["character", "environment", "prop", "vehicle"].includes(entry.data.modelType));
+
+// Create tabs data
+const tabsData = [
+  {
+    id: "about",
+    label: "About",
+    content: entryIndex.data.description || "3D modeling portfolio showcasing various projects and techniques."
+  },
+  {
+    id: "characters",
+    label: "Characters", 
+    content: "character-models",
+    models: characterModels
+  },
+  {
+    id: "environments",
+    label: "Environments",
+    content: "environment-models", 
+    models: environmentModels
+  },
+  {
+    id: "props",
+    label: "Props",
+    content: "prop-models",
+    models: propModels
+  },
+  {
+    id: "vehicles", 
+    label: "Vehicles",
+    content: "vehicle-models",
+    models: vehicleModels
+  },
+  {
+    id: "others",
+    label: "Others",
+    content: "other-models",
+    models: otherModels
+  }
+];
+---
+
+<BaseLayout title={entryIndex.data.title} description={entryIndex.data.description}>
+  <section class="section py-8 min-h-[60vh] flex items-center justify-center">
+    <div class="container max-w-6xl">
+      <div class="flex justify-center">
+        <ProfileCard tabsData={tabsData} client:load />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .section {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+</style>

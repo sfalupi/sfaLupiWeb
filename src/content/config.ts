@@ -147,6 +147,31 @@ const commissions = defineCollection({
     }),
 });
 
+const models3d = defineCollection({
+  loader: glob({
+    pattern: "**\/[^_]*.{md,mdx}",
+    base: "./src/content/3dmodels",
+  }),
+  schema: ({ image }) =>
+    searchable.extend({
+      date: z.date().optional(),
+      order: z.number().optional(),
+      image: image().optional(), // Main image
+      images: z.array(image()).optional(), // Gallery images
+      imageAlt: z.string().default(""),
+      author: reference("contact").optional(),
+      downloadLink: z.string().url().optional(),
+      modelType: z.string().optional(), // Type of 3D model (character, environment, prop, etc.)
+      software: z.string().optional(), // Software used (Blender, Maya, etc.)
+      polyCount: z.number().optional(), // Polygon count
+      textures: z.boolean().default(false), // Whether textures are included
+      rigged: z.boolean().default(false), // Whether model is rigged
+      animated: z.boolean().default(false), // Whether animations are included
+      formats: z.array(z.string()).optional(), // File formats available (fbx, obj, blend, etc.)
+      tags: z.array(z.string()).optional(), // Tags for categorization
+    }),
+});
+
 const terms = defineCollection({
   loader: glob({ pattern: "-index.{md,mdx}", base: "./src/content/terms" }),
   schema: searchable,
@@ -160,5 +185,6 @@ export const collections = {
   texturepacks,
   terms,
   pixelart,
-  commissions
+  commissions,
+  "3dmodels": models3d
 };

@@ -1,0 +1,12 @@
+---
+import ProfileCardReact from './ProfileCard.tsx';
+
+interface Props {
+  tabsData: any[];
+  [key: string]: any;
+}
+
+const { tabsData, ...props } = Astro.props;
+---
+
+<ProfileCardReact tabsData={tabsData} {...props} client:load />

@@ -1,0 +1,111 @@
+---
+import type { Models3DEntry } from "@/types";
+import Share from "@components/common/Share.astro";
+import { Image } from "astro:assets";
+import BaseLayout from "@components/base/BaseLayout.astro";
+import { upperHumanize, markdownify } from "@lib/textConverter";
+import { render } from "astro:content";
+
+import {
+  FaCube,
+  FaDownload,
+  FaPalette,
+  FaPlay,
+  FaCode,
+  FaTags,
+} from "react-icons/fa";
+
+interface Props {
+  entry: Models3DEntry;
+}
+
+const { entry } = Astro.props;
+
+if (!entry || !entry.data) {
+  throw new Error('3D Model entry or entry data is missing');
+}
+
+const {
+  title,
+  description,
+  image,
+  imageAlt,
+  modelType
+} = entry.data;
+
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={title} description={description} image={image?.src}>
+  <section class="section">
+    <div class="container">
+      <div class="row justify-center">
+        <article class="lg:col-10 flex flex-wrap content-start">
+          <!-- Title -->
+          <h1 set:html={title} class="p-2 col basis-full min-w-72 font-primary font-bold" />
+          
+          <!-- Model Preview -->
+          {
+            image && (
+              <div class="col basis-2/3 p-2 min-w-72">
+                <div class="glass rounded-lg intersect:animate-fadeDown opacity-0 overflow-hidden">
+                  <Image
+                    class="w-full rounded-lg hover:scale-105 transition-transform duration-300"
+                    src={image}
+                    alt={imageAlt || "3D Model preview"}
+                    width={1920}
+                    height={1080}
+                    loading="eager"
+                  />
+                </div>
+              </div>
+            )
+          }
+          
+          <!-- Model Information -->
+          <section class="col basis-1/3 p-2 min-w-72">
+            <div class="glass rounded-lg p-4 h-full intersect:animate-fadeUp opacity-0">
+              
+              <!-- Model Type -->
+              {
+                modelType && (
+                  <div class="mb-4">
+                    <FaCube className={"mr-2 -mt-1 inline-block"} />
+                    <span class="font-semibold">Type:</span> {upperHumanize(modelType)}
+                  </div>
+                )
+              }
+            
+              <!-- Description -->
+              {
+                description && (
+                  <div class="mt-6 pt-4 border-t border-border dark:border-darkmode-border">
+                    <div set:html={markdownify(description)} />
+                  </div>
+                )
+              }
+            </div>
+          </section>
+          
+          <!-- Additional Content -->
+          <section class="col basis-full p-2 min-w-72">
+            <div class="glass rounded-lg p-4 intersect:animate-fadeUp opacity-0">
+              <Content />
+            </div>
+          </section>
+          
+        </article>
+        
+        <!-- Share -->
+        <div class="flex col-10 p-2 items-center justify-center lg:justify-end px-6">
+          <Share
+            title={title || "3D Model"}
+            description={description || ""}
+            folder="3dmodels"
+            id={entry.id}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

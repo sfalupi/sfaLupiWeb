@@ -1,0 +1,341 @@
+import React, { useState } from 'react';
+
+interface Model3D {
+  id: string;
+  data: {
+    title: string;
+    image?: any;
+    images?: any[]; // Multiple images for gallery
+    imageAlt?: string;
+    modelType?: string;
+    software?: string;
+    polyCount?: number;
+    textures?: boolean;
+    rigged?: boolean;
+    animated?: boolean;
+    formats?: string[];
+    downloadLink?: string;
+  };
+}
+
+interface TabData {
+  id: string;
+  label: string;
+  content: string;
+  models?: Model3D[];
+}
+
+interface ProfileCardProps {
+  tabsData: TabData[];
+}
+
+const ProfileCard: React.FC<ProfileCardProps> = ({ tabsData }) => {
+  const [expandedSections, setExpandedSections] = useState<string[]>(['about']);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImages, setCurrentImages] = useState<any[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Keyboard navigation for lightbox
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightboxOpen) return;
+      
+      switch (e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          prevImage();
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          nextImage();
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, currentImages.length]);
+
+  // Prevent body scroll when lightbox is open
+  React.useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [lightboxOpen]);
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => {
+      if (prev.includes(sectionId)) {
+        return prev.filter(id => id !== sectionId);
+      } else {
+        return [...prev, sectionId];
+      }
+    });
+  };
+
+  const openLightbox = (model: Model3D) => {
+    // Get all images for this model (main image + gallery images)
+    const allImages = [];
+    if (model.data.image) allImages.push(model.data.image);
+    if (model.data.images) allImages.push(...model.data.images);
+    
+    setCurrentImages(allImages);
+    setCurrentImageIndex(0);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    setCurrentImages([]);
+    setCurrentImageIndex(0);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % currentImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + currentImages.length) % currentImages.length);
+  };
+
+  const renderSectionContent = (section: TabData) => {
+    if (section.content === 'character-models' || 
+        section.content === 'environment-models' || 
+        section.content === 'prop-models' ||
+        section.content === 'vehicle-models' ||
+        section.content === 'other-models') {
+      
+      if (!section.models || section.models.length === 0) {
+        return (
+          <div className="text-center py-4">
+            <p className="text-txt-s dark:text-darkmode-txt-s">No models in this category yet.</p>
+          </div>
+        );
+      }
+
+      // Commission-style layout: single column, large cards
+      return (
+        <div className="space-y-6 pt-4">
+          {section.models.map((model) => (
+            <div key={model.id} className="glass-t rounded-lg border border-border dark:border-darkmode-border overflow-hidden hover:opacity-90 transition-opacity">
+              <div 
+                className="cursor-pointer"
+                onClick={() => openLightbox(model)}
+              >
+                <div className="aspect-video w-full bg-bg-t dark:bg-darkmode-bg-t overflow-hidden">
+                  {model.data.image && (
+                    <img 
+                      src={model.data.image.src} 
+                      alt={model.data.imageAlt || model.data.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  )}
+                </div>
+                <div className="p-4 text-center">
+                  <h3 className="text-xl font-semibold text-txt-p dark:text-darkmode-txt-p mb-2">
+                    {model.data.title}
+                  </h3>
+                  <div className="text-sm text-txt-s dark:text-darkmode-txt-s space-y-1">
+                    {model.data.software && (
+                      <p><span className="font-medium">Software:</span> {model.data.software}</p>
+                    )}
+                    {model.data.polyCount && (
+                      <p><span className="font-medium">Polygons:</span> {model.data.polyCount.toLocaleString()}</p>
+                    )}
+                    <div className="flex flex-wrap gap-2 justify-center mt-2">
+                      {model.data.textures && (
+                        <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded text-xs">
+                          Textured
+                        </span>
+                      )}
+                      {model.data.rigged && (
+                        <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded text-xs">
+                          Rigged
+                        </span>
+                      )}
+                      {model.data.animated && (
+                        <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded text-xs">
+                          Animated
+                        </span>
+                      )}
+                    </div>
+                    {model.data.downloadLink && (
+                      <div className="mt-3">
+                        <a 
+                          href={model.data.downloadLink} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-block px-4 py-2 bg-txt-p dark:bg-darkmode-txt-p text-bg-p dark:text-darkmode-bg-p rounded hover:opacity-80 transition-opacity"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Download
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    // Default content for About section
+    return (
+      <div className="text-txt-s dark:text-darkmode-txt-s leading-relaxed pt-4">
+        <p>{section.content}</p>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      <div className="w-full max-w-4xl mx-4">
+        <div className="glass rounded-lg p-6 md:p-8 max-h-[80vh] overflow-y-auto">
+          <div className="space-y-4">
+            {tabsData.map((section) => {
+              const isExpanded = expandedSections.includes(section.id);
+              
+              return (
+                <div key={section.id} className="border-b border-border dark:border-darkmode-border last:border-b-0">
+                  {/* Section Header */}
+                  <button
+                    onClick={() => toggleSection(section.id)}
+                    className="w-full flex items-center justify-center py-4 hover:opacity-80 transition-opacity relative"
+                  >
+                    <h2 className="text-xl font-semibold text-txt-p dark:text-darkmode-txt-p text-center">
+                      {section.label}
+                    </h2>
+                    
+                    {/* Expand/Collapse Arrow - Positioned to the right */}
+                    <svg 
+                      className={`w-5 h-5 text-txt-s dark:text-darkmode-txt-s transition-transform duration-200 absolute right-0 ${
+                        isExpanded ? 'rotate-180' : 'rotate-0'
+                      }`}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Section Content */}
+                  <div className={`overflow-hidden transition-all duration-300 ${
+                    isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}>
+                    <div className="pb-6 max-h-[450px] overflow-y-auto">
+                      {renderSectionContent(section)}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-8"
+          onClick={closeLightbox}
+        >
+          <div 
+            className="relative max-w-6xl max-h-full w-full flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button - Top Right Outside */}
+            <button
+              onClick={closeLightbox}
+              className="absolute -top-4 -right-4 z-10 text-white bg-red-600 hover:bg-red-700 rounded-full p-3 transition-all shadow-lg"
+              title="Close (ESC)"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Main Image Container */}
+            <div className="relative flex items-center justify-center w-full">
+              {/* Left Arrow - Outside Image */}
+              {currentImages.length > 1 && (
+                <button
+                  onClick={prevImage}
+                  className="absolute -left-16 top-1/2 transform -translate-y-1/2 text-white bg-gray-800 hover:bg-gray-700 rounded-full p-4 transition-all shadow-lg"
+                  title="Previous (←)"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+              )}
+
+              {/* Image */}
+              {currentImages[currentImageIndex] && (
+                <img
+                  src={currentImages[currentImageIndex].src}
+                  alt="Model preview"
+                  className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl"
+                  style={{
+                    imageRendering: 'pixelated',
+                  }}
+                />
+              )}
+
+              {/* Right Arrow - Outside Image */}
+              {currentImages.length > 1 && (
+                <button
+                  onClick={nextImage}
+                  className="absolute -right-16 top-1/2 transform -translate-y-1/2 text-white bg-gray-800 hover:bg-gray-700 rounded-full p-4 transition-all shadow-lg"
+                  title="Next (→)"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              )}
+            </div>
+
+            {/* Bottom Controls - Outside Image */}
+            {currentImages.length > 1 && (
+              <div className="mt-6 flex items-center gap-4 bg-gray-800 bg-opacity-90 px-6 py-3 rounded-full">
+                <span className="text-white text-sm font-medium">
+                  {currentImageIndex + 1} / {currentImages.length}
+                </span>
+                
+                {/* Dot indicators */}
+                <div className="flex gap-2">
+                  {currentImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-3 h-3 rounded-full transition-all ${
+                        index === currentImageIndex 
+                          ? 'bg-white scale-110' 
+                          : 'bg-gray-400 hover:bg-gray-300 hover:scale-105'
+                      }`}
+                      title={`Go to image ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default ProfileCard;
