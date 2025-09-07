@@ -133,6 +133,7 @@ const commissions = defineCollection({
       author: reference("contact").optional(),
       downloadLink: z.string().url().optional(), // Add this new field
       ducksabervn: z.string().url().optional(),
+      maximus: z.string().url().optional(),
       prepTime: z.number().optional(),
       servings: z.number().optional(),
       diet: z.string().optional(),

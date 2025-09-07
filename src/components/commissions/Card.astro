@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, image, imageAlt, ducksabervn } = entry.data;
+const { title, image, imageAlt, ducksabervn, maximus } = entry.data;
 
 // Get the raw image src (bypassing Astro's image optimization)
 const imageSrc = image ? image.src : null;
