@@ -1,14 +1,14 @@
 ---
-title: Banner for @DucksaberVN
+title: Profile Picture for @Maximus60
 description: A moist, flavorful banana bread made with overripe bananas, perfect for breakfast or a snack.
-image: "@assets/commissions/banner.png"
+image: "@assets/commissions/pfpmaxi.png"
 downloadLink: https://www.youtube.com/watch?v=rkogbQI_bn8
-ducksabervn: https://www.youtube.com/@ducksabervn
+ducksabervn: https://youtube.com/@maximus60_?si=sEfa-hpPUb6n0mGB
 author: jane-doe
 prepTime: 15
 cook_time: 60
 servings: 8
-order: 7
+order: 6
 diet: Vegetarian
 
 ingredients:

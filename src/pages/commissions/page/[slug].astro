@@ -4,8 +4,8 @@ import { sortByOrder } from "@lib/sortFunctions";
 import type { CommissionsEntry } from "@/types";
 import CollectionLayout from "@components/commissions/CollectionLayout.astro";
 
-const entryIndex = (await getIndex("pixelarts")) as CommissionsEntry;
-const entries = (await getEntries("pixelarts", sortByOrder)) as CommissionsEntry[];
+const entryIndex = (await getIndex("commissions")) as CommissionsEntry;
+const entries = (await getEntries("commissions", sortByOrder)) as CommissionsEntry[];
 
 const { slug } = Astro.params;
 
